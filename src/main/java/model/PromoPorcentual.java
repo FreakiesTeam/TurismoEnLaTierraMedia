@@ -1,7 +1,4 @@
-package tierraMedia.promociones;
-
-import tierraMedia.atracciones.Atraccion;
-import tierraMedia.atracciones.TipoAtraccion;
+package model;
 
 import java.util.List;
 
@@ -32,6 +29,16 @@ public class PromoPorcentual extends Promocion {
     public boolean esPromoAxB() {
         return false;
     }
+
+	@Override
+	public boolean esPorcentual() {
+		return true;
+	}
+
+	@Override
+	public boolean esAbsoluta() {
+		return false;
+	}
 
 
 }

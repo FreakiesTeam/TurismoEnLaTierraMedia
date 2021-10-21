@@ -1,14 +1,15 @@
-package tierraMedia;
+package model;
 
-import tierraMedia.atracciones.Atraccion;
-import tierraMedia.atracciones.TipoAtraccion;
-import tierraMedia.promociones.PromoAxB;
-import tierraMedia.promociones.Promocion;
-
-import java.io.*;
-import java.util.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 
 public class Usuario {
+	private int id;
     private String nombre;
     private int monedas;
     private TipoAtraccion tipoPreferido;
@@ -16,7 +17,8 @@ public class Usuario {
     private List<Producto> itinerario;
     private List<Atraccion> atraccionesCompradas;
 
-    public Usuario(String nombre, String preferencia, int monedas, double tiempo) {
+    public Usuario(int id ,String nombre, String preferencia, int monedas, double tiempo) {
+    	this.id = id;
         this.nombre = nombre;
         this.tipoPreferido = TipoAtraccion.valueOf(preferencia.toUpperCase());
         this.monedas = monedas;
@@ -25,6 +27,10 @@ public class Usuario {
         this.atraccionesCompradas = new ArrayList<>();
     }
 
+    public int getId() {
+    	return this.id;
+    }
+    
     public String getNombre() {
         return this.nombre;
     }

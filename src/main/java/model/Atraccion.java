@@ -1,20 +1,19 @@
-package tierraMedia.atracciones;
+package model;
 
-import tierraMedia.Producto;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Atraccion implements Producto, Comparable<Atraccion> {
 
+	private int id;
     private String nombre;
     private TipoAtraccion tipo;
     private Integer costo;
     private Double tiempo;
     private int cupoDisponible;
 
-    public Atraccion(String nombre, int costo, double tiempo, int cupoDiario, String tipo) {
-        this.nombre = nombre;
+    public Atraccion(int id, String nombre, int costo, double tiempo, int cupoDiario, String tipo) {
+        this.id = id;
+    	this.nombre = nombre;
         this.tipo = TipoAtraccion.valueOf(tipo.toUpperCase());
         this.costo = costo;
         this.tiempo = tiempo;
@@ -82,4 +81,14 @@ public class Atraccion implements Producto, Comparable<Atraccion> {
         }
         return -this.getCosto().compareTo(otra.getCosto());
     }
+
+	@Override
+	public boolean esPorcentual() {
+		return false;
+	}
+
+	@Override
+	public boolean esAbsoluta() {
+		return false;
+	}
 }

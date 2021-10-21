@@ -1,7 +1,4 @@
-package tierraMedia;
-
-import tierraMedia.atracciones.Atraccion;
-import tierraMedia.atracciones.TipoAtraccion;
+package model;
 
 import java.util.List;
 
@@ -26,7 +23,8 @@ public interface Producto{
     boolean esAtraccion();
 
     boolean esPromoAxB();
-
-
-
+    
+    boolean esPorcentual();
+    
+    boolean esAbsoluta();
 }

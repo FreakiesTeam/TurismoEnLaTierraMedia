@@ -1,16 +1,16 @@
 package tierraMedia.servicios;
 
-import tierraMedia.atracciones.Atraccion;
-import tierraMedia.atracciones.TipoAtraccion;
-import tierraMedia.Usuario;
-import tierraMedia.promociones.PromoAbsoluta;
-import tierraMedia.promociones.PromoAxB;
-import tierraMedia.promociones.PromoPorcentual;
-import tierraMedia.promociones.Promocion;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Atraccion;
+import model.PromoAbsoluta;
+import model.PromoAxB;
+import model.PromoPorcentual;
+import model.Promocion;
+import model.TipoAtraccion;
+import model.Usuario;
 
 public class ManejadorDeArchivos {
 
@@ -32,7 +32,7 @@ public class ManejadorDeArchivos {
                 int monedas = Integer.parseInt(datos[2]);
                 int tiempo = Integer.parseInt(datos[3]);
 
-                usuarios.add(new Usuario(nombre, preferencia, monedas, tiempo));
+                usuarios.add(new Usuario(1, nombre, preferencia, monedas, tiempo));
                 linea = br.readLine();
             }
 
@@ -68,7 +68,7 @@ public class ManejadorDeArchivos {
                 int cupoDiario = Integer.parseInt(datos[3]);
                 String tipo = datos[4];
 
-                atracciones.add(new Atraccion(nombre, costo, tiempo, cupoDiario, tipo));
+                atracciones.add(new Atraccion(1, nombre, costo, tiempo, cupoDiario, tipo));
                 linea = br.readLine();
             }
 

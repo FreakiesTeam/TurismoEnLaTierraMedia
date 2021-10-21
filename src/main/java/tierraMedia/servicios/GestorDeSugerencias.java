@@ -1,15 +1,15 @@
 package tierraMedia.servicios;
 
-import tierraMedia.atracciones.Atraccion;
-import tierraMedia.Producto;
-import tierraMedia.atracciones.TipoAtraccion;
-import tierraMedia.Usuario;
-import tierraMedia.promociones.Promocion;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import model.Atraccion;
+import model.Producto;
+import model.Promocion;
+import model.TipoAtraccion;
+import model.Usuario;
 
 public class GestorDeSugerencias {
     private List<Usuario> usuarios;
