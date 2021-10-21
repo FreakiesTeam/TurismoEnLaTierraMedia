@@ -18,4 +18,19 @@ public class PromoAbsoluta extends Promocion {
         return super.getCosto() - this.descuento;
     }
 
+    @Override
+    public boolean esPromocion() {
+        return true;
+    }
+
+    @Override
+    public boolean esAtraccion() {
+        return false;
+    }
+
+    @Override
+    public boolean esPromoAxB() {
+        return false;
+    }
+
 }

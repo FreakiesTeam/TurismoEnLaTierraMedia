@@ -99,6 +99,23 @@ public class Usuario {
     }
 
     public boolean noSeVisito(Producto sugerencia) {
+        if (sugerencia.esAtraccion()) {
+            return !atraccionesCompradas.contains((Atraccion) sugerencia);
+        }
+
+        if (sugerencia.esPromocion()) {
+            List<Atraccion> atraccionesPromo = ((Promocion) sugerencia).getAtracciones();
+            boolean noContieneGratis = true;
+            if (sugerencia.esPromoAxB()) {
+                PromoAxB axb = (PromoAxB) sugerencia;
+                noContieneGratis = !atraccionesCompradas.contains(axb.getAtraccionGratis());
+            }
+            return Collections.disjoint(atraccionesCompradas, atraccionesPromo) && noContieneGratis;
+        }
+        return false;
+    }
+
+    public boolean noSeVisito2(Producto sugerencia) {
         String tipo = sugerencia.getClass().getSimpleName();
         if (tipo.equals("Atraccion")) {
             return !atraccionesCompradas.contains((Atraccion) sugerencia);

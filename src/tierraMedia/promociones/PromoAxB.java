@@ -34,6 +34,21 @@ public class PromoAxB extends Promocion {
     }
 
     @Override
+    public boolean esPromocion() {
+        return true;
+    }
+
+    @Override
+    public boolean esAtraccion() {
+        return false;
+    }
+
+    @Override
+    public boolean esPromoAxB() {
+        return true;
+    }
+
+    @Override
     public boolean tieneCupo() {
         return super.tieneCupo() && this.atraccionGratis.tieneCupo();
     }

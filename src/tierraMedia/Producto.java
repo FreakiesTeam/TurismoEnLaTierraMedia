@@ -21,6 +21,12 @@ public interface Producto{
 
     List<Atraccion> getAtraccionesTotales();
 
+    boolean esPromocion();
+
+    boolean esAtraccion();
+
+    boolean esPromoAxB();
+
 
 
 }

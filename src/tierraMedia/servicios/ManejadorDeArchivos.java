@@ -14,6 +14,7 @@ import java.util.List;
 
 public class ManejadorDeArchivos {
 
+
     public static List<Usuario> cargarUsuarios(String path) {
         FileReader fr = null;
         BufferedReader br = null;

@@ -18,5 +18,20 @@ public class PromoPorcentual extends Promocion {
         return (int) Math.ceil(super.getCosto() * (1 - this.porcentaje/100.0));
     }
 
+    @Override
+    public boolean esPromocion() {
+        return true;
+    }
+
+    @Override
+    public boolean esAtraccion() {
+        return false;
+    }
+
+    @Override
+    public boolean esPromoAxB() {
+        return false;
+    }
+
 
 }

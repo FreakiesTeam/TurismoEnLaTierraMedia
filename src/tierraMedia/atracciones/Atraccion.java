@@ -60,6 +60,21 @@ public class Atraccion implements Producto, Comparable<Atraccion> {
     }
 
     @Override
+    public boolean esPromocion() {
+        return false;
+    }
+
+    @Override
+    public boolean esAtraccion() {
+        return true;
+    }
+
+    @Override
+    public boolean esPromoAxB() {
+        return false;
+    }
+
+    @Override
     public int compareTo(Atraccion otra) {
         //ordenar por costo y si es el mismo ordena por tiempo
         if (this.getCosto().compareTo(otra.getCosto()) == 0) {
