@@ -25,7 +25,11 @@ public class PromoPorcentual extends Promocion {
         return false;
     }
 
-    @Override
+	public int getPorcentaje() {
+		return porcentaje;
+	}
+
+	@Override
     public boolean esPromoAxB() {
         return false;
     }

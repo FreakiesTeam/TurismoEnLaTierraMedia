@@ -1,11 +1,46 @@
 package dao;
 
 import java.sql.*;
+import java.util.ArrayList;
 import jdbc.ConnectionProvider;
-import model.*;
+import model.Atraccion;
+import model.Usuario;
 
 public class AtraccionDAOImpl implements AtraccionDAO{
 
+	
+	public ArrayList<Atraccion> cargarAtracciones(){
+		ArrayList<Atraccion> atracciones = new ArrayList<Atraccion>();
+        Connection con = null;
+		try {
+			con = ConnectionProvider.getConnection();
+		} catch (SQLException e1) {			
+			e1.printStackTrace();
+		}
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String query = "SELECT * FROM atraccion";
+        try{
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                atracciones.add(toAtraccion(rs)
+                );
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                con.close();
+                ps.close();
+                rs.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return atracciones;
+	}
+	
 	@Override
 	public int insert(Atraccion atraccion) {
 		try {

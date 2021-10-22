@@ -1,16 +1,9 @@
 package tierraMedia.servicios;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-import model.Atraccion;
-import model.PromoAbsoluta;
-import model.PromoAxB;
-import model.PromoPorcentual;
-import model.Promocion;
-import model.TipoAtraccion;
-import model.Usuario;
+import model.*;
 
 public class ManejadorDeArchivos {
 

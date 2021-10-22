@@ -1,15 +1,9 @@
 package tierraMedia.servicios;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import model.Atraccion;
-import model.Producto;
-import model.Promocion;
-import model.TipoAtraccion;
-import model.Usuario;
+import java.util.*;
+import dao.DAOFactory;
+import model.*;
 
 public class GestorDeSugerencias {
     private List<Usuario> usuarios;
@@ -23,11 +17,11 @@ public class GestorDeSugerencias {
     }
 
     public void cargarUsuarios(String path) {
-        this.usuarios = ManejadorDeArchivos.cargarUsuarios(path);
+        this.usuarios = DAOFactory.getUsuarioDAO().cargarUsuarios();
     }
 
     public void cargarProductos(String pathAtracciones,String pathPromociones) {
-        this.atracciones = ManejadorDeArchivos.cargarAtracciones(pathAtracciones);
+        this.atracciones = DAOFactory.getAtraccionDAO().cargarAtracciones();
         this.promociones = ManejadorDeArchivos.cargarPromociones(pathPromociones, this.atracciones);
     }
 

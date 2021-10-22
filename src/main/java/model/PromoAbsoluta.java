@@ -40,4 +40,9 @@ public class PromoAbsoluta extends Promocion {
 		return true;
 	}
 
+	public int getDescuento() {
+		return descuento;
+	}
+
+
 }
