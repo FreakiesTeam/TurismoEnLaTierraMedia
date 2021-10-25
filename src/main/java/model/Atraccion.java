@@ -2,85 +2,91 @@ package model;
 
 import java.util.*;
 
+import dao.AtraccionDAO;
+import dao.DAOFactory;
+
 public class Atraccion implements Producto, Comparable<Atraccion> {
 
 	private int id;
-    private String nombre;
-    private TipoAtraccion tipo;
-    private Integer costo;
-    private Double tiempo;
-    private int cupoDisponible;
+	private String nombre;
+	private TipoAtraccion tipo;
+	private Integer costo;
+	private Double tiempo;
+	private int cupoDisponible;
 
-    public Atraccion(int id, String nombre, int costo, double tiempo, int cupoDiario, String tipo) {
-        this.id = id;
-    	this.nombre = nombre;
-        this.tipo = TipoAtraccion.valueOf(tipo.toUpperCase());
-        this.costo = costo;
-        this.tiempo = tiempo;
-        this.cupoDisponible = cupoDiario;
-    }
+	public Atraccion(int id, String nombre, int costo, double tiempo, int cupoDiario, String tipo) {
+		this.id = id;
+		this.nombre = nombre;
+		this.tipo = TipoAtraccion.valueOf(tipo.toUpperCase());
+		this.costo = costo;
+		this.tiempo = tiempo;
+		this.cupoDisponible = cupoDiario;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public TipoAtraccion getTipo() {
-        return this.tipo;
-    }
+	public TipoAtraccion getTipo() {
+		return this.tipo;
+	}
 
-    public boolean tieneCupo() {
-        return cupoDisponible > 0;
-    }
+	public boolean tieneCupo() {
+		return cupoDisponible > 0;
+	}
 
-    public void actualizarCupo() {
-        this.cupoDisponible--;
-    }
+	public void actualizarCupo() {
+		this.cupoDisponible--;
+		AtraccionDAO atraccionDAO = DAOFactory.getAtraccionDAO();
+		atraccionDAO.update(this);
 
-    public Double getTiempo() {
-        return tiempo;
-    }
+	}
 
-    public int getCupoDisponible() {
-        return cupoDisponible;
-    }
+	public Double getTiempo() {
+		return tiempo;
+	}
 
-    public Integer getCosto() {
-        return this.costo;
-    }
+	public int getCupoDisponible() {
+		return cupoDisponible;
+	}
 
-    public void setCosto(Integer costo) {
-        this.costo = costo;
-    }
+	public Integer getCosto() {
+		return this.costo;
+	}
 
-    public List<Atraccion> getAtraccionesTotales(){
-        List<Atraccion> atraccion = new ArrayList<>();
-        atraccion.add(this);
-        return atraccion;
-    }
+	public void setCosto(Integer costo) {
+		this.costo = costo;
+	}
 
-    @Override
-    public boolean esPromocion() {
-        return false;
-    }
+	public List<Atraccion> getAtraccionesTotales() {
+		List<Atraccion> atraccion = new ArrayList<>();
+		atraccion.add(this);
+		return atraccion;
+	}
 
-    @Override
-    public boolean esAtraccion() {
-        return true;
-    }
+	@Override
+	public boolean esPromocion() {
+		return false;
+	}
 
-    @Override
-    public boolean esPromoAxB() {
-        return false;
-    }
+	@Override
+	public boolean esAtraccion() {
+		return true;
+	}
 
-    @Override
-    public int compareTo(Atraccion otra) {
-        //ordenar por costo y si es el mismo ordena por tiempo
-        if (this.getCosto().compareTo(otra.getCosto()) == 0) {
-            return -this.getTiempo().compareTo(otra.getTiempo());
-        }
-        return -this.getCosto().compareTo(otra.getCosto());
-    }
+	@Override
+	public boolean esPromoAxB() {
+		return false;
+	}
+
+	@Override
+	public int compareTo(Atraccion otra) {
+		// ordenar por costo y si es el mismo ordena por tiempo
+		if (this.getCosto().compareTo(otra.getCosto()) == 0) {
+			return -this.getTiempo().compareTo(otra.getTiempo());
+		}
+		return -this.getCosto().compareTo(otra.getCosto());
+	}
 
 	@Override
 	public boolean esPorcentual() {
