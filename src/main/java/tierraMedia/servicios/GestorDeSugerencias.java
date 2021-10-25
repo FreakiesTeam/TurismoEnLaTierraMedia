@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 
+import config.Config;
 import dao.DAOFactory;
 import model.*;
 
@@ -18,23 +19,24 @@ public class GestorDeSugerencias {
         this.promociones = new ArrayList<>();
     }
 
-    public void cargarUsuarios(String path) {
-        this.usuarios = ManejadorDeArchivos.cargarUsuarios(path);
-    }
-
     public void cargarUsuarios() throws SQLException {
-        this.usuarios = DAOFactory.getUsuarioDAO().cargarUsuarios();
-    }
-
-    public void cargarProductos(String pathAtracciones, String pathPromociones) {
-        this.atracciones = ManejadorDeArchivos.cargarAtracciones(pathAtracciones);
-        this.promociones = ManejadorDeArchivos.cargarPromociones(pathPromociones, this.atracciones);
+        if (Config.leerPropiedad("usar_db").equals("si")) {
+            this.usuarios = DAOFactory.getUsuarioDAO().cargarUsuarios();
+        } else if (Config.leerPropiedad("usar_db").equals("no")) {
+            this.usuarios = ManejadorDeArchivos.cargarUsuarios(Config.leerPropiedad("path_usuarios"));
+        }
     }
 
     public void cargarProductos() throws SQLException {
-        this.atracciones = DAOFactory.getAtraccionDAO().cargarAtracciones();
-        this.promociones = DAOFactory.getPromocionDAO().cargarPromociones();
-
+        if (Config.leerPropiedad("usar_db").equals("si")) {
+            this.atracciones = DAOFactory.getAtraccionDAO().cargarAtracciones();
+            this.promociones = DAOFactory.getPromocionDAO().cargarPromociones();
+        } else if (Config.leerPropiedad("usar_db").equals("no")) {
+            this.atracciones = ManejadorDeArchivos.cargarAtracciones(Config.leerPropiedad("path_atracciones"));
+            this.promociones = ManejadorDeArchivos.cargarPromociones(Config.leerPropiedad("path_promociones"), this.atracciones);
+        } else {
+            throw new RuntimeException("La propiedad usar_db debe ser si o no.");
+        }
     }
 
     public List<Atraccion> getAtracciones() {

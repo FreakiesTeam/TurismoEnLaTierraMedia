@@ -89,8 +89,10 @@ public class Usuario {
                     this.itinerario.add(sugerencia);
                     this.monedas -= sugerencia.getCosto();
                     this.tiempoDisponible -= sugerencia.getTiempo();
+                    //TODO Actualizar tiempo y monedas en la base aca o al finalizar?
                     this.atraccionesCompradas.addAll(sugerencia.getAtraccionesTotales());
                     sugerencia.actualizarCupo();
+                    //TODO Actualizar el cupo en la base
 
                     System.out.println("Tiempo restante: " + this.tiempoDisponible);
                     System.out.println("Monedas restantes: " + this.monedas);
