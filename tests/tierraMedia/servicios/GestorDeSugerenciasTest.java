@@ -3,15 +3,7 @@ package tierraMedia.servicios;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import tierraMedia.Producto;
-import tierraMedia.Usuario;
-import tierraMedia.atracciones.Atraccion;
-import tierraMedia.atracciones.TipoAtraccion;
-import tierraMedia.promociones.PromoAbsoluta;
-import tierraMedia.promociones.PromoAxB;
-import tierraMedia.promociones.PromoPorcentual;
-import tierraMedia.promociones.Promocion;
-
+import model.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +24,11 @@ public class GestorDeSugerenciasTest {
     public void setUp() throws IOException {
         gestor = new GestorDeSugerencias();
         atracciones = new ArrayList<>();
-        atraccion1 = new Atraccion("atraccion1", 40, 1, 1, "AVENTURA");
-        atraccion2 = new Atraccion("atraccion2", 60, 2, 2, "AVENTURA");
+        atraccion1 = new Atraccion(1,"atraccion1", 40, 1, 1, "AVENTURA");
+        atraccion2 = new Atraccion(2,"atraccion2", 60, 2, 2, "AVENTURA");
         atracciones.add(atraccion1);
         atracciones.add(atraccion2);
-        atraccionGratis = new Atraccion("atraccionGratis", 10, 3, 3, "AVENTURA");
+        atraccionGratis = new Atraccion(3,"atraccionGratis", 10, 3, 3, "AVENTURA");
 
         axb = new PromoAxB("PROMO AXB", TipoAtraccion.valueOf("AVENTURA"), atracciones, atraccionGratis);
         absoluta = new PromoAbsoluta("PROMO absoluta", TipoAtraccion.valueOf("AVENTURA"), atracciones, 5);
@@ -47,7 +39,7 @@ public class GestorDeSugerenciasTest {
         promociones.add(absoluta);
         promociones.add(porcentual);
 
-        usuario = new Usuario("Maria", "AVENTURA", 150, 120);
+        usuario = new Usuario(1,"Maria", "AVENTURA", 150, 120);
 
     }
 

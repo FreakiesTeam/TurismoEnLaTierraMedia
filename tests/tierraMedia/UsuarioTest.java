@@ -3,12 +3,7 @@ package tierraMedia;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import tierraMedia.atracciones.Atraccion;
-import tierraMedia.atracciones.TipoAtraccion;
-import tierraMedia.promociones.PromoAbsoluta;
-import tierraMedia.promociones.PromoAxB;
-import tierraMedia.promociones.PromoPorcentual;
-import tierraMedia.promociones.Promocion;
+import model.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -29,14 +24,14 @@ public class UsuarioTest {
 
     @Before
     public void setup() {
-        usuario = new Usuario("Marcos", "PAISAJE",10,10);
+        usuario = new Usuario(1,"Marcos", "PAISAJE",10,10);
 
         atracciones = new ArrayList<>();
-        atraccion1 = new Atraccion("atraccion1", 40, 1, 1, "AVENTURA");
-        atraccion2 = new Atraccion("atraccion2", 60, 2, 2, "AVENTURA");
+        atraccion1 = new Atraccion(1,"atraccion1", 40, 1, 1, "AVENTURA");
+        atraccion2 = new Atraccion(2,"atraccion2", 60, 2, 2, "AVENTURA");
         atracciones.add(atraccion1);
         atracciones.add(atraccion2);
-        atraccionGratis = new Atraccion("atraccionGratis", 10, 3, 3, "AVENTURA");
+        atraccionGratis = new Atraccion(3,"atraccionGratis", 10, 3, 3, "AVENTURA");
 
         axb = new PromoAxB("PROMO AXB", TipoAtraccion.valueOf("AVENTURA"), atracciones, atraccionGratis);
         absoluta = new PromoAbsoluta("PROMO absoluta", TipoAtraccion.valueOf("AVENTURA"), atracciones, 5);
@@ -51,7 +46,7 @@ public class UsuarioTest {
 
     @Test
     public void noSeVisitoAtraccionTest(){
-        Atraccion atraccion3 = new Atraccion("atraccion3", 60, 2, 2, "AVENTURA");
+        Atraccion atraccion3 = new Atraccion(4,"atraccion3", 60, 2, 2, "AVENTURA");
         usuario.setAtraccionesCompradas(atracciones);
         Assert.assertTrue(usuario.noSeVisito(atraccion3));
     }
@@ -69,13 +64,13 @@ public class UsuarioTest {
 
         List<Producto> itinerario = new ArrayList<>();
         List<Atraccion> atracciones = new ArrayList<>();
-        Atraccion minasTirith = new Atraccion ("Minas Tirith",5,2.5,25,"PAISAJE");
-        Atraccion abismo = new Atraccion ("Abismo de Helm",5,2,15,"PAISAJE");
-        Atraccion erebor = new Atraccion ("Erebor",12,3,32,"PAISAJE");
+        Atraccion minasTirith = new Atraccion (1,"Minas Tirith",5,2.5,25,"PAISAJE");
+        Atraccion abismo = new Atraccion (2,"Abismo de Helm",5,2,15,"PAISAJE");
+        Atraccion erebor = new Atraccion (3,"Erebor",12,3,32,"PAISAJE");
         atracciones.add(minasTirith);
         atracciones.add(abismo);
         Promocion promo = new PromoAxB("Pack paisajes", TipoAtraccion.valueOf("PAISAJE"), atracciones, erebor);
-        Usuario sole = new Usuario("Sole", "PAISAJE", 100, 100);
+        Usuario sole = new Usuario(1,"Sole", "PAISAJE", 100, 100);
         itinerario.add(promo);
         sole.setItinerario(itinerario);
         List<Atraccion> compradas = new ArrayList<>();

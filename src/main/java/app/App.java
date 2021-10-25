@@ -1,14 +1,15 @@
 package app;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import tierraMedia.servicios.GestorDeSugerencias;
 
 public class App {
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, SQLException {
 		GestorDeSugerencias gestor = new GestorDeSugerencias();
-		gestor.cargarUsuarios("entrada/usuarios.txt");
-		gestor.cargarProductos("entrada/atracciones.txt", "entrada/promociones.txt");
+		gestor.cargarUsuarios();
+		gestor.cargarProductos();
 		gestor.generarSugerenciasParaUsuarios();
 	}
 }

@@ -1,11 +1,12 @@
 package tierraMedia.servicios;
 
+import model.Atraccion;
+import model.Promocion;
+import model.Usuario;
 import org.junit.Test;
-import tierraMedia.atracciones.Atraccion;
-import tierraMedia.Usuario;
-import tierraMedia.promociones.Promocion;
 
 import java.util.List;
+
 
 public class ManejadorDeArchivosTest {
 

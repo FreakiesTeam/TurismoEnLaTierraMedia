@@ -1,7 +1,9 @@
 package tierraMedia.servicios;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
+
 import dao.DAOFactory;
 import model.*;
 
@@ -17,12 +19,22 @@ public class GestorDeSugerencias {
     }
 
     public void cargarUsuarios(String path) {
+        this.usuarios = ManejadorDeArchivos.cargarUsuarios(path);
+    }
+
+    public void cargarUsuarios() throws SQLException {
         this.usuarios = DAOFactory.getUsuarioDAO().cargarUsuarios();
     }
 
-    public void cargarProductos(String pathAtracciones,String pathPromociones) {
-        this.atracciones = DAOFactory.getAtraccionDAO().cargarAtracciones();
+    public void cargarProductos(String pathAtracciones, String pathPromociones) {
+        this.atracciones = ManejadorDeArchivos.cargarAtracciones(pathAtracciones);
         this.promociones = ManejadorDeArchivos.cargarPromociones(pathPromociones, this.atracciones);
+    }
+
+    public void cargarProductos() throws SQLException {
+        this.atracciones = DAOFactory.getAtraccionDAO().cargarAtracciones();
+        this.promociones = DAOFactory.getPromocionDAO().cargarPromociones();
+
     }
 
     public List<Atraccion> getAtracciones() {

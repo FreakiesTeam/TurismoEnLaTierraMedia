@@ -3,8 +3,7 @@ package tierraMedia.promociones;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import tierraMedia.atracciones.Atraccion;
-import tierraMedia.atracciones.TipoAtraccion;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +18,9 @@ public class PromocionTest {
     @Before
     public void setUp() {
         atracciones = new ArrayList<>();
-        atracciones.add(new Atraccion("atraccion1", 40, 1, 1, "AVENTURA"));
-        atracciones.add(new Atraccion("atraccion2", 60, 1, 1, "AVENTURA"));
-        atraccionGratis = new Atraccion("atraccionGratis", 10, 1, 1, "AVENTURA");
+        atracciones.add(new Atraccion(1, "atraccion1", 40, 1, 1, "AVENTURA"));
+        atracciones.add(new Atraccion(2, "atraccion2", 60, 1, 1, "AVENTURA"));
+        atraccionGratis = new Atraccion(3, "atraccionGratis", 10, 1, 1, "AVENTURA");
 
         porcentual = new PromoPorcentual("PROMO PORCENTUAL", TipoAtraccion.valueOf("AVENTURA"), atracciones, 50);
         absoluta = new PromoAbsoluta("PROMO ABSOLUTA", TipoAtraccion.valueOf("AVENTURA"), atracciones, 10);
@@ -81,19 +80,19 @@ public class PromocionTest {
     }
 
     @Test
-    public void verCupoTest(){
-        Assert.assertEquals(3,axb.getAtraccionesTotales().size());
+    public void verCupoTest() {
+        Assert.assertEquals(3, axb.getAtraccionesTotales().size());
 
-        for(Atraccion atr : axb.getAtraccionesTotales()){
-            Assert.assertEquals(1,atr.getCupoDisponible());
+        for (Atraccion atr : axb.getAtraccionesTotales()) {
+            Assert.assertEquals(1, atr.getCupoDisponible());
         }
     }
 
     @Test
-    public void actualizarCupoTest(){
+    public void actualizarCupoTest() {
         axb.actualizarCupo();
-        for(Atraccion atr : axb.getAtraccionesTotales()){
-            Assert.assertEquals(0,atr.getCupoDisponible());
+        for (Atraccion atr : axb.getAtraccionesTotales()) {
+            Assert.assertEquals(0, atr.getCupoDisponible());
         }
     }
 

@@ -1,5 +1,6 @@
 package tierraMedia.atracciones;
 
+import model.Atraccion;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +10,8 @@ public class AtraccionTest {
 
     @Before
     public void setUp() {
-        atraccion = new Atraccion("atraccion1", 40, 1, 1, "AVENTURA");
+        //TODO sacar ID o poner ID a todo?
+        atraccion = new Atraccion(1,"atraccion1", 40, 1, 1, "AVENTURA");
     }
 
     @Test
