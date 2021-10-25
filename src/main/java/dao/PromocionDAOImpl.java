@@ -28,7 +28,7 @@ public class PromocionDAOImpl implements PromocionDAO {
             while (rs.next()) {
                 promociones.add(toPromocion(rs));
             }
-            con.close();
+
             return promociones;
 
         } catch (Exception e) {

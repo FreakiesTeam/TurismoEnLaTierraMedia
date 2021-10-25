@@ -1,16 +1,16 @@
 <<< Itinerario de Gandalf>>>
 
-Nombre del producto: Minas Tirith
+Nombre del producto: Erebor
 Tipo de atracción: PAISAJE
-Costo: 5 Tiempo: 2.5
+Costo: 12 Tiempo: 3.0
 ---------------------------------
 
-Nombre del producto: Moria
-Tipo de atracción: AVENTURA
-Costo: 10 Tiempo: 2.0
+Nombre del producto: Absimo de Helm
+Tipo de atracción: PAISAJE
+Costo: 5 Tiempo: 2.0
 ---------------------------------
 Atracciones a visitar: 
-Minas Tirith
-Moria
-Costo total: 15
-Tiempo total: 4.5
+Erebor
+Absimo de Helm
+Costo total: 17
+Tiempo total: 5.0

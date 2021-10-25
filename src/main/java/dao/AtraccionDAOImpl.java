@@ -68,7 +68,7 @@ public class AtraccionDAOImpl implements AtraccionDAO {
             statement.setInt(1, atraccion.getCupoDisponible());
             statement.setString(2, atraccion.getNombre());
             int rows = statement.executeUpdate();
-            conn.close();
+
             return rows;
         } catch (Exception e) {
             throw new MissingDataException(e);
