@@ -5,19 +5,26 @@ Tipo de atracción: DEGUSTACION
 Costo: 2 Tiempo: 7.5
 ---------------------------------
 
-Nombre del producto: La Comarca
-Tipo de atracción: DEGUSTACION
-Costo: 3 Tiempo: 6.5
+Nombre del producto: Pack Aventura
+Tipo de atracción: AVENTURA
+Costo: 23 Tiempo: 7.0
 ---------------------------------
 
-Nombre del producto: Bosque negro
+Nombre del producto: Lothlorien
+Tipo de atracción: DEGUSTACION
+Costo: 35 Tiempo: 1.0
+---------------------------------
+
+Nombre del producto: Moria
 Tipo de atracción: AVENTURA
-Costo: 3 Tiempo: 4.0
+Costo: 10 Tiempo: 2.0
 ---------------------------------
 Atracciones a visitar: 
 La Comarca
 Lothlorien
-La Comarca
+Mordor
 Bosque negro
-Costo total: 8
-Tiempo total: 18.0
+Lothlorien
+Moria
+Costo total: 70
+Tiempo total: 17.5

@@ -1,9 +1,11 @@
 package dao;
 
+import model.Producto;
 import model.Usuario;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDAOArch implements UsuarioDAO {
 
@@ -26,4 +28,15 @@ public class UsuarioDAOArch implements UsuarioDAO {
     public ArrayList<Usuario> cargarUsuarios() throws SQLException {
         return null;
     }
+
+	public void actualizarItinerario(List<Producto> itinerario) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int actualizarItinerario(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

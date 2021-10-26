@@ -97,4 +97,9 @@ public class Atraccion implements Producto, Comparable<Atraccion> {
 	public boolean esAbsoluta() {
 		return false;
 	}
+
+	@Override
+	public int getId() {
+		return this.id;
+	}
 }

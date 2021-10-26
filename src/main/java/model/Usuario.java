@@ -1,16 +1,9 @@
 package model;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
-
-import dao.DAOFactory;
-import dao.UsuarioDAO;
+import java.util.*;
+import dao.*;
 
 public class Usuario {
 	private int id;
@@ -92,7 +85,6 @@ public class Usuario {
 				if (respuesta.equals("SI")) {
 					this.itinerario.add(sugerencia);
 					actualizarDB(sugerencia);
-					// TODO Actualizar tiempo y monedas en la base aca o al finalizar?
 					this.atraccionesCompradas.addAll(sugerencia.getAtraccionesTotales());
 					sugerencia.actualizarCupo();
 					System.out.println("Tiempo restante: " + this.tiempoDisponible);
@@ -181,4 +173,15 @@ public class Usuario {
 	public void setItinerario(List<Producto> itinerario) {
 		this.itinerario = itinerario;
 	}
+	
+	public void actualizarItinerario() {
+		UsuarioDAO usuarioDAO = DAOFactory.getUsuarioDAO();
+		usuarioDAO.actualizarItinerario(this);	
+	}
+
+	public List<Producto> getItinerario() {
+		return itinerario;
+	}
+	
+	
 }

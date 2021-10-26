@@ -99,7 +99,7 @@ public class GestorDeSugerencias {
     public void generarSugerenciasParaUsuarios() throws IOException, SQLException {
         for (Usuario usuario : this.usuarios) {
             usuario.analizarSugerencias(this.generarSugerenciasPara(usuario));
-            usuario.escribirArchivo();
+            usuario.actualizarItinerario();
         }
     }
 

@@ -1,4 +1,16 @@
 <<< Itinerario de Eowyn>>>
+
+Nombre del producto: Mordor
+Tipo de atracción: AVENTURA
+Costo: 25 Tiempo: 3.0
+---------------------------------
+
+Nombre del producto: Moria
+Tipo de atracción: AVENTURA
+Costo: 10 Tiempo: 2.0
+---------------------------------
 Atracciones a visitar: 
-Costo total: 0
-Tiempo total: 0.0
+Mordor
+Moria
+Costo total: 35
+Tiempo total: 5.0

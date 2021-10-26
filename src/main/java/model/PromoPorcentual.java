@@ -5,8 +5,8 @@ import java.util.List;
 public class PromoPorcentual extends Promocion {
     private int porcentaje;
 
-    public PromoPorcentual(String nombre, TipoAtraccion tipoAtraccion, List<Atraccion> atracciones, int porcentaje) {
-        super(nombre, tipoAtraccion, atracciones);
+    public PromoPorcentual(int id, String nombre, TipoAtraccion tipoAtraccion, List<Atraccion> atracciones, int porcentaje) {
+        super(id, nombre, tipoAtraccion, atracciones);
         this.porcentaje = porcentaje;
     }
 
@@ -43,6 +43,4 @@ public class PromoPorcentual extends Promocion {
 	public boolean esAbsoluta() {
 		return false;
 	}
-
-
 }

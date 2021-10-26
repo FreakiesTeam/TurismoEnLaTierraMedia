@@ -27,4 +27,6 @@ public interface Producto{
     boolean esPorcentual();
     
     boolean esAbsoluta();
+    
+    int getId();
 }

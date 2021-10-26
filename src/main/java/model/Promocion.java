@@ -6,13 +6,18 @@ public abstract class Promocion implements Producto, Comparable<Promocion> {
 	protected String nombre;
 	protected List<Atraccion> atracciones;
 	protected TipoAtraccion tipoAtraccion;
+	protected int id;
 
-	public Promocion(String nombre, TipoAtraccion tipoAtraccion, List<Atraccion> atracciones) {
+	public Promocion(int id, String nombre, TipoAtraccion tipoAtraccion, List<Atraccion> atracciones) {
+		this.id = id;
 		this.nombre = nombre;
 		this.tipoAtraccion = tipoAtraccion;
 		this.atracciones = atracciones;
 	}
 
+	public int getId() {
+		return this.id;
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -76,5 +81,9 @@ public abstract class Promocion implements Producto, Comparable<Promocion> {
     		return "Porcentual";
     	}return "No es PROMO";
     }
+	
+	public boolean esPromocion() {
+		return true;
+	}
 
 }

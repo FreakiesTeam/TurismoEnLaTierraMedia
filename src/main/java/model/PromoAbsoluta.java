@@ -5,19 +5,14 @@ import java.util.List;
 public class PromoAbsoluta extends Promocion {
     private int descuento;
 
-    public PromoAbsoluta(String nombre, TipoAtraccion tipoAtraccion, List<Atraccion> atracciones, int monedas) {
-        super(nombre, tipoAtraccion, atracciones);
+    public PromoAbsoluta(int id, String nombre, TipoAtraccion tipoAtraccion, List<Atraccion> atracciones, int monedas) {
+        super(id, nombre, tipoAtraccion, atracciones);
         this.descuento = monedas;
     }
 
     @Override
     public Integer getCosto() {
         return super.getCosto() - this.descuento;
-    }
-
-    @Override
-    public boolean esPromocion() {
-        return true;
     }
 
     @Override
@@ -43,6 +38,4 @@ public class PromoAbsoluta extends Promocion {
 	public int getDescuento() {
 		return descuento;
 	}
-
-
 }

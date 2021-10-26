@@ -102,13 +102,13 @@ public class ManejadorDeArchivos {
 
                 if (datos[3].equals("absoluta")) {
                     int monedas = Integer.parseInt(datos[4]);
-                    promociones.add(new PromoAbsoluta(nombre, tipoAtraccion, atraccionesPromo, monedas));
+                  //  promociones.add(new PromoAbsoluta(nombre, tipoAtraccion, atraccionesPromo, monedas));
                 } else if (tipoPromo.equals("porcentual")) {
                     int porcentaje = Integer.parseInt(datos[4]);
-                    promociones.add(new PromoPorcentual(nombre, tipoAtraccion, atraccionesPromo, porcentaje));
+                  //  promociones.add(new PromoPorcentual(id, nombre, tipoAtraccion, atraccionesPromo, porcentaje));
                 } else if (tipoPromo.equals("AxB")) {
                     Atraccion atraccion = ManejadorDeArchivos.obtenerAtraccionDesdeNombre(datos[4], atracciones);
-                    promociones.add(new PromoAxB(nombre, tipoAtraccion, atraccionesPromo, atraccion));
+                   // promociones.add(new PromoAxB(nombre, tipoAtraccion, atraccionesPromo, atraccion));
                 } else {
                     throw new Error("Tipo de promoción incorrecto.");
                 }

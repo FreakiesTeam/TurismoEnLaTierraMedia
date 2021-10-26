@@ -1,11 +1,7 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
+import java.util.*;
 
 import jdbc.ConnectionProvider;
 import model.*;
@@ -96,7 +92,7 @@ public class PromocionDAOImpl implements PromocionDAO {
     }
 
     private Promocion toPromocion(ResultSet resultados) throws SQLException {
-
+    	
         int idPromo = resultados.getInt(1);
         String nombre = resultados.getString(2);
         int idTipoAtraccion = resultados.getInt(3);
@@ -115,15 +111,15 @@ public class PromocionDAOImpl implements PromocionDAO {
         if (tipo_promocion.equals("AXB")) {
             Atraccion atraccionGratis = atraccionDAO.findByName(descuento);
 
-            return new PromoAxB(nombre, tipo_atraccion, atracciones, atraccionGratis);
+            return new PromoAxB(idPromo, nombre, tipo_atraccion, atracciones, atraccionGratis);
 
         } else if (tipo_promocion.equals("ABSOLUTA")) {
 
-            return new PromoAbsoluta(nombre, tipo_atraccion, atracciones, Integer.parseInt(descuento));
+            return new PromoAbsoluta(idPromo, nombre, tipo_atraccion, atracciones, Integer.parseInt(descuento));
 
         } else if (tipo_promocion.equals("PORCENTUAL")) {
 
-            return new PromoPorcentual(nombre, tipo_atraccion, atracciones, Integer.parseInt(descuento));
+            return new PromoPorcentual(idPromo, nombre, tipo_atraccion, atracciones, Integer.parseInt(descuento));
         } else {
             throw new RuntimeException("Tipo de promoción inexistente.");
         }
