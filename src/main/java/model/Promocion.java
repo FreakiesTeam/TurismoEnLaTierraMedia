@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Promocion implements Producto, Comparable<Promocion> {
 	protected String nombre;
@@ -86,4 +87,22 @@ public abstract class Promocion implements Producto, Comparable<Promocion> {
 		return true;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, nombre);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Promocion other = (Promocion) obj;
+		return id == other.id && Objects.equals(nombre, other.nombre);
+	}
+	
+	
 }

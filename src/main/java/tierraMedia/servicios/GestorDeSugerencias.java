@@ -21,7 +21,7 @@ public class GestorDeSugerencias {
 
     public void cargarUsuarios() throws SQLException {
         if (Config.leerPropiedad("usar_db").equals("si")) {
-            this.usuarios = DAOFactory.getUsuarioDAO().cargarUsuarios();
+            this.usuarios = DAOFactory.getUsuarioDAO().findAll();
         } else if (Config.leerPropiedad("usar_db").equals("no")) {
             this.usuarios = ManejadorDeArchivos.cargarUsuarios(Config.leerPropiedad("path_usuarios"));
         }
@@ -29,8 +29,8 @@ public class GestorDeSugerencias {
 
     public void cargarProductos() throws SQLException {
         if (Config.leerPropiedad("usar_db").equals("si")) {
-            this.atracciones = DAOFactory.getAtraccionDAO().cargarAtracciones();
-            this.promociones = DAOFactory.getPromocionDAO().cargarPromociones();
+            this.atracciones = DAOFactory.getAtraccionDAO().findAll();
+            this.promociones = DAOFactory.getPromocionDAO().findAll();
         } else if (Config.leerPropiedad("usar_db").equals("no")) {
             this.atracciones = ManejadorDeArchivos.cargarAtracciones(Config.leerPropiedad("path_atracciones"));
             this.promociones = ManejadorDeArchivos.cargarPromociones(Config.leerPropiedad("path_promociones"), this.atracciones);

@@ -8,5 +8,5 @@ public interface PromocionDAO extends GenericDAO<Promocion>{
 	
 	public abstract Promocion findByName(String nombre);
 	
-	public abstract ArrayList<Promocion> cargarPromociones();
+	public abstract ArrayList<Promocion> findAll();
 }

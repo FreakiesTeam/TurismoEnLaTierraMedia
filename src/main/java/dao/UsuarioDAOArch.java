@@ -3,6 +3,7 @@ package dao;
 import model.Producto;
 import model.Usuario;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class UsuarioDAOArch implements UsuarioDAO {
     }
 
     @Override
-    public ArrayList<Usuario> cargarUsuarios() throws SQLException {
+    public ArrayList<Usuario> findAll() {
         return null;
     }
 
@@ -38,5 +39,11 @@ public class UsuarioDAOArch implements UsuarioDAO {
 	public int actualizarItinerario(Usuario usuario) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Usuario toUsuario(ResultSet resultados) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

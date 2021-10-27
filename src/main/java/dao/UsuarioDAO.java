@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,9 @@ public interface UsuarioDAO extends GenericDAO<Usuario> {
 
 	public abstract Usuario findByUsername(String username);
 	
-	public abstract ArrayList<Usuario> cargarUsuarios() throws SQLException;
+	public abstract ArrayList<Usuario> findAll();
 
 	public abstract int actualizarItinerario(Usuario usuario);
+	
+	Usuario toUsuario(ResultSet resultados) throws SQLException; 
 }

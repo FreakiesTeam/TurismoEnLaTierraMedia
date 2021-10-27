@@ -2,160 +2,153 @@ package dao;
 
 import java.sql.*;
 import java.util.*;
-
 import jdbc.ConnectionProvider;
 import model.*;
 
-import javax.xml.stream.FactoryConfigurationError;
-
 public class PromocionDAOImpl implements PromocionDAO {
 
+	public ArrayList<Promocion> findAll() {
 
-    public ArrayList<Promocion> cargarPromociones() {
+		try {
+			String query = "SELECT * FROM promocion";
+			Connection con = ConnectionProvider.getConnection();
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
 
-        try {
-            String query = "SELECT * FROM promocion";
-            Connection con = ConnectionProvider.getConnection();
-            PreparedStatement ps = con.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
+			ArrayList<Promocion> promociones = new ArrayList<>();
 
-            ArrayList<Promocion> promociones = new ArrayList<>();
+			while (rs.next()) {
+				promociones.add(toPromocion(rs));
+			}
 
-            while (rs.next()) {
-                promociones.add(toPromocion(rs));
-            }
+			return promociones;
 
-            return promociones;
+		} catch (Exception e) {
+			throw new MissingDataException(e);
+		}
+	}
 
-        } catch (Exception e) {
-            throw new MissingDataException(e);
-        }
-    }
+	@Override
+	public int insert(Promocion promocion) {
+		try {
+			String sql = "INSERT INTO promocion (nombre,  tipo_atraccion_id, tipo_promocion_id, descuento) VALUES (?, ?, ?, ?)";
+			Connection conn = ConnectionProvider.getConnection();
 
+			String sql2 = "SELECT tipo_atraccion_id FROM tipo_atraccion WHERE tipo_atraccion.nombre = ?";
+			PreparedStatement statement2 = conn.prepareStatement(sql2);
+			statement2.setString(1, promocion.getTipo().toString().toLowerCase());
+			ResultSet resultadoId = statement2.executeQuery();
 
-    @Override
-    public int insert(Promocion promocion) {
-        try {
-            String sql = "INSERT INTO promocion (nombre,  tipo_atraccion_id, tipo_promocion_id, descuento) VALUES (?, ?, ?, ?)";
-            Connection conn = ConnectionProvider.getConnection();
+			String sql3 = "SELECT id FROM tipo_promocion WHERE tipo_promocion.nombre = ?";
+			PreparedStatement statement3 = conn.prepareStatement(sql3);
+			statement3.setString(1, promocion.getTipoPromo());
+			ResultSet resultado2 = statement3.executeQuery();
 
-            String sql2 = "SELECT tipo_atraccion_id FROM tipo_atraccion WHERE tipo_atraccion.nombre = ?";
-            PreparedStatement statement2 = conn.prepareStatement(sql2);
-            statement2.setString(1, promocion.getTipo().toString().toLowerCase());
-            ResultSet resultadoId = statement2.executeQuery();
+			String sql4 = "SELECT id FROM atraccion WHERE atraccion.nombre = ?";
+			PreparedStatement statement4 = conn.prepareStatement(sql4);
+			statement4.setString(1, promocion.getTipoPromo());
+			ResultSet resultado3 = statement4.executeQuery();
 
-            String sql3 = "SELECT id FROM tipo_promocion WHERE tipo_promocion.nombre = ?";
-            PreparedStatement statement3 = conn.prepareStatement(sql3);
-            statement3.setString(1, promocion.getTipoPromo());
-            ResultSet resultado2 = statement3.executeQuery();
+			String descuento = null;
+			if (promocion.esPromoAxB()) {
+				PromoAxB promoAxB = (PromoAxB) promocion;
+				descuento = promoAxB.getAtraccionGratis().getNombre();
+			} else if (promocion.esPorcentual()) {
+				PromoPorcentual promoPorcentual = (PromoPorcentual) promocion;
+				descuento = Integer.toString(promoPorcentual.getPorcentaje());
+			} else if (promocion.esAbsoluta()) {
+				PromoAbsoluta promoAbsolut = (PromoAbsoluta) promocion;
+				descuento = Integer.toString(promoAbsolut.getDescuento());
+			}
 
-            String sql4 = "SELECT id FROM atraccion WHERE atraccion.nombre = ?";
-            PreparedStatement statement4 = conn.prepareStatement(sql4);
-            statement4.setString(1, promocion.getTipoPromo());
-            ResultSet resultado3 = statement4.executeQuery();
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, promocion.getNombre());
+			statement.setInt(2, resultadoId.getInt(1));
+			statement.setInt(3, resultado2.getInt(1));
+			statement.setInt(4, resultado3.getInt(1));
+			statement.setString(5, descuento);
+			int rows = statement.executeUpdate();
+			return rows;
+		} catch (Exception e) {
+			throw new MissingDataException(e);
+		}
+	}
 
-            String descuento = null;
-            if (promocion.esPromoAxB()) {
-                PromoAxB promoAxB = (PromoAxB) promocion;
-                descuento = promoAxB.getAtraccionGratis().getNombre();
-            } else if (promocion.esPorcentual()) {
-                PromoPorcentual promoPorcentual = (PromoPorcentual) promocion;
-                descuento = Integer.toString(promoPorcentual.getPorcentaje());
-            } else if (promocion.esAbsoluta()) {
-                PromoAbsoluta promoAbsolut = (PromoAbsoluta) promocion;
-                descuento = Integer.toString(promoAbsolut.getDescuento());
-            }
+	@Override
+	public int update(Promocion promocion) {
+		// no lo usamos ahre xd
+		return 0;
+	}
 
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, promocion.getNombre());
-            statement.setInt(2, resultadoId.getInt(1));
-            statement.setInt(3, resultado2.getInt(1));
-            statement.setInt(4, resultado3.getInt(1));
-            statement.setString(5, descuento);
-            int rows = statement.executeUpdate();
-            return rows;
-        } catch (Exception e) {
-            throw new MissingDataException(e);
-        }
-    }
+	@Override
+	public Promocion findByName(String nombre) {
 
-    @Override
-    public int update(Promocion promocion) {
+		return null;
+	}
 
-        return 0;
-    }
+	private Promocion toPromocion(ResultSet resultados) throws SQLException {
 
-    @Override
-    public Promocion findByName(String nombre) {
+		int idPromo = resultados.getInt(1);
+		String nombre = resultados.getString(2);
+		int idTipoAtraccion = resultados.getInt(3);
+		int idTipoPromo = resultados.getInt(4);
+		String descuento = resultados.getString(5);
 
-        return null;
-    }
+		AtraccionDAO atraccionDAO = DAOFactory.getAtraccionDAO();
+		TipoAtraccion tipo_atraccion = TipoAtraccion.valueOf(atraccionDAO.obtenerTipoNombre(idTipoAtraccion));
 
-    private Promocion toPromocion(ResultSet resultados) throws SQLException {
-    	
-        int idPromo = resultados.getInt(1);
-        String nombre = resultados.getString(2);
-        int idTipoAtraccion = resultados.getInt(3);
-        int idTipoPromo = resultados.getInt(4);
-        String descuento = resultados.getString(5);
+		String tipo_promocion = obtenerTipoNombre(idTipoPromo);
 
+		List<Atraccion> atracciones = this.obtenerAtraccionesDePromocion(idPromo);
 
-        AtraccionDAO atraccionDAO = DAOFactory.getAtraccionDAO();
-        TipoAtraccion tipo_atraccion = TipoAtraccion.valueOf(atraccionDAO.obtenerTipoNombre(idTipoAtraccion));
+		if (tipo_promocion.equals("AXB")) {
+			Atraccion atraccionGratis = atraccionDAO.findByName(descuento);
 
-        String tipo_promocion = obtenerTipoNombre(idTipoPromo);
+			return new PromoAxB(idPromo, nombre, tipo_atraccion, atracciones, atraccionGratis);
 
-        List<Atraccion> atracciones = this.obtenerAtraccionesDePromocion(idPromo);
+		} else if (tipo_promocion.equals("ABSOLUTA")) {
 
+			return new PromoAbsoluta(idPromo, nombre, tipo_atraccion, atracciones, Integer.parseInt(descuento));
 
-        if (tipo_promocion.equals("AXB")) {
-            Atraccion atraccionGratis = atraccionDAO.findByName(descuento);
+		} else if (tipo_promocion.equals("PORCENTUAL")) {
 
-            return new PromoAxB(idPromo, nombre, tipo_atraccion, atracciones, atraccionGratis);
+			return new PromoPorcentual(idPromo, nombre, tipo_atraccion, atracciones, Integer.parseInt(descuento));
+		} else {
+			throw new RuntimeException("Tipo de promoción inexistente.");
+		}
 
-        } else if (tipo_promocion.equals("ABSOLUTA")) {
+	}
 
-            return new PromoAbsoluta(idPromo, nombre, tipo_atraccion, atracciones, Integer.parseInt(descuento));
+	private List<Atraccion> obtenerAtraccionesDePromocion(int idPromocion) throws SQLException {
+		// language=SQL
+		String sql = "SELECT * FROM atraccion_x_promocion WHERE promocion_id = ?";
+		Connection conn = ConnectionProvider.getConnection();
+		PreparedStatement statement2 = conn.prepareStatement(sql);
+		statement2.setInt(1, idPromocion);
+		ResultSet resultados = statement2.executeQuery();
+		// resultado id promo / id atraccion
 
-        } else if (tipo_promocion.equals("PORCENTUAL")) {
+		List<Atraccion> atracciones = new ArrayList<>();
+		AtraccionDAO atraccionDAO = DAOFactory.getAtraccionDAO();
 
-            return new PromoPorcentual(idPromo, nombre, tipo_atraccion, atracciones, Integer.parseInt(descuento));
-        } else {
-            throw new RuntimeException("Tipo de promoción inexistente.");
-        }
+		while (resultados.next()) {
+			Atraccion atraccion = atraccionDAO.findById(resultados.getInt(2));
+			atracciones.add(atraccion);
+		}
 
-    }
+		return atracciones;
 
-    private List<Atraccion> obtenerAtraccionesDePromocion(int idPromocion) throws SQLException {
-        //language=SQL
-        String sql = "SELECT * FROM atraccion_x_promocion WHERE promocion_id = ?";
-        Connection conn = ConnectionProvider.getConnection();
-        PreparedStatement statement2 = conn.prepareStatement(sql);
-        statement2.setInt(1, idPromocion);
-        ResultSet resultados = statement2.executeQuery();
-        //resultado id promo / id atraccion
+	}
 
-        List<Atraccion> atracciones = new ArrayList<>();
-        AtraccionDAO atraccionDAO = DAOFactory.getAtraccionDAO();
+	public String obtenerTipoNombre(int idTipo) throws SQLException {
+		Connection conn = ConnectionProvider.getConnection();
+		String sql2 = "SELECT nombre FROM tipo_promocion WHERE id = ?";
+		PreparedStatement statement2 = conn.prepareStatement(sql2);
+		statement2.setInt(1, idTipo);
 
-        while (resultados.next()) {
-            Atraccion atraccion = atraccionDAO.findById(resultados.getInt(2));
-            atracciones.add(atraccion);
-        }
+		ResultSet resultadoId = statement2.executeQuery();
 
-        return atracciones;
-
-    }
-
-    public String obtenerTipoNombre(int idTipo) throws SQLException {
-        Connection conn = ConnectionProvider.getConnection();
-        String sql2 = "SELECT nombre FROM tipo_promocion WHERE id = ?";
-        PreparedStatement statement2 = conn.prepareStatement(sql2);
-        statement2.setInt(1, idTipo);
-
-        ResultSet resultadoId = statement2.executeQuery();
-
-        return resultadoId.getString(1).toUpperCase();
-    }
+		return resultadoId.getString(1).toUpperCase();
+	}
 
 }

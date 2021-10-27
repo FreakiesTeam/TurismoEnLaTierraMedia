@@ -9,7 +9,7 @@ import model.Usuario;
 
 public class UsuarioDAOImpl implements UsuarioDAO {
 
-	public ArrayList<Usuario> cargarUsuarios() {
+	public ArrayList<Usuario> findAll() {
 		try {
 			String query = "SELECT * FROM usuario";
 			Connection con = ConnectionProvider.getConnection();
@@ -87,8 +87,8 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			throw new MissingDataException(e);
 		}
 	}
-
-	private Usuario toUsuario(ResultSet resultados) throws SQLException {
+	@Override
+	public Usuario toUsuario(ResultSet resultados) throws SQLException {
 		AtraccionDAO atraccionDAO = DAOFactory.getAtraccionDAO();
 
 		int id = resultados.getInt(1);

@@ -18,7 +18,7 @@ public class AtraccionDAOArchivo implements AtraccionDAO{
         return null;
     }
 
-    public ArrayList<Atraccion> cargarAtracciones() {
+    public ArrayList<Atraccion> findAll() {
         FileReader fr = null;
         BufferedReader br = null;
         List<Atraccion> atracciones = new ArrayList<>();

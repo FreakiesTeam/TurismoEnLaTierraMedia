@@ -8,8 +8,8 @@ import model.Atraccion;
 
 public class AtraccionDAOImpl implements AtraccionDAO {
 
-
-    public ArrayList<Atraccion> cargarAtracciones() {
+	
+    public ArrayList<Atraccion> findAll() {
 
         try {
             String query = "SELECT * FROM atraccion";

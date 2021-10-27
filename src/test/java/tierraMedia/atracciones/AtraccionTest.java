@@ -23,13 +23,10 @@ public class AtraccionTest {
     public void tiempoAtraccionTest() {
         Assert.assertEquals(1,atraccion.getTiempo(),0);
     }
-
     @Test
     public void tieneCupoTest() {
         Assert.assertEquals(true, atraccion.tieneCupo());
         atraccion.actualizarCupo();
         Assert.assertEquals(false, atraccion.tieneCupo());
-
     }
-
 }

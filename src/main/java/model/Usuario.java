@@ -182,6 +182,23 @@ public class Usuario {
 	public List<Producto> getItinerario() {
 		return itinerario;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, nombre);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		return id == other.id && Objects.equals(nombre, other.nombre);
+	}
+	 	
 	
 }

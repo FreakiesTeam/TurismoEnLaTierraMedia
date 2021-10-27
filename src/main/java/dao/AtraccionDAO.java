@@ -9,7 +9,7 @@ public interface AtraccionDAO extends GenericDAO<Atraccion>{
 	
 	public abstract Atraccion findByName(String nombre);
 	
-	public abstract ArrayList<Atraccion> cargarAtracciones() throws SQLException;
+	public abstract ArrayList<Atraccion> findAll();
 
 	public abstract int obtenerTipoId(String nombreTipo) throws SQLException;
 
