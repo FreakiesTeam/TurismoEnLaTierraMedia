@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public final class Config {
+    public static boolean usarBD = false;
 
     public static String leerPropiedad(String propiedad){
         String valor = null;

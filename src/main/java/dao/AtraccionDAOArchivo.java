@@ -11,14 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AtraccionDAOArchivo implements AtraccionDAO{
+public class AtraccionDAOArchivo implements AtraccionDAO {
 
-    @Override
-    public Atraccion findByName(String nombre) {
-        return null;
-    }
 
-    public ArrayList<Atraccion> cargarAtracciones() {
+    public List<Atraccion> cargarAtracciones() {
         FileReader fr = null;
         BufferedReader br = null;
         List<Atraccion> atracciones = new ArrayList<>();
@@ -50,7 +46,7 @@ public class AtraccionDAOArchivo implements AtraccionDAO{
             } catch (Exception e2) {
                 e2.printStackTrace();
             }
-            return (ArrayList<Atraccion>) atracciones;
+            return atracciones;
         }
     }
 
@@ -74,25 +70,6 @@ public class AtraccionDAOArchivo implements AtraccionDAO{
         return null;
     }
 
-    public List<Atraccion> atraccionesStrToList(String[] atraccionesStrings, List<Atraccion> atracciones) {
-        List<Atraccion> atraccionesObj = new ArrayList<>();
-
-        for (int i = 0; i < atraccionesStrings.length; i++) {
-            atraccionesObj.add(this.obtenerAtraccionDesdeNombre(atraccionesStrings[i], atracciones));
-        }
-        return atraccionesObj;
-    }
-
-    public static Atraccion obtenerAtraccionDesdeNombre(String nombre, List<Atraccion> atracciones) {
-        for (int i = 0; i < atracciones.size(); i++) {
-            if (atracciones.get(i).getNombre().equals(nombre)) {
-                return atracciones.get(i);
-            }
-        }
-        return null;
-    }
-
-
     @Override
     public int insert(Atraccion atraccion) {
         return 0;
@@ -102,4 +79,15 @@ public class AtraccionDAOArchivo implements AtraccionDAO{
     public int update(Atraccion atraccion) {
         return 0;
     }
+
+    @Override
+    public int delete(Atraccion atraccion) {
+        return 0;
+    }
+
+    @Override
+    public Atraccion findByName(String nombre) {
+        return null;
+    }
+
 }

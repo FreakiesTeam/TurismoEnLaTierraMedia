@@ -86,6 +86,11 @@ public class PromocionDAOImpl implements PromocionDAO {
     }
 
     @Override
+    public int delete(Promocion promocion) {
+        return 0;
+    }
+
+    @Override
     public Promocion findByName(String nombre) {
 
         return null;

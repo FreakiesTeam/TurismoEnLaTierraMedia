@@ -11,7 +11,7 @@ public interface UsuarioDAO extends GenericDAO<Usuario> {
 
 	public abstract Usuario findByUsername(String username);
 	
-	public abstract ArrayList<Usuario> cargarUsuarios() throws SQLException;
+	public abstract List<Usuario> cargarUsuarios() throws SQLException;
 
 	public abstract int actualizarItinerario(Usuario usuario);
 }

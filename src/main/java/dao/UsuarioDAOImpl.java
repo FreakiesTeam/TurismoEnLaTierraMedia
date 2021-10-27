@@ -68,6 +68,11 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		}
 	}
 
+	@Override
+	public int delete(Usuario usuario) {
+		return 0;
+	}
+
 	public Usuario findByUsername(String username) {
 		try {
 			String sql = "SELECT * FROM usuario WHERE nombre = ?";

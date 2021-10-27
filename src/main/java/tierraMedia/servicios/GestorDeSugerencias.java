@@ -4,15 +4,21 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 
-import config.Config;
 import dao.DAOFactory;
 import model.*;
 
 public class GestorDeSugerencias {
+    private static GestorDeSugerencias instancia;
     private List<Usuario> usuarios;
     private List<Atraccion> atracciones;
     private List<Promocion> promociones;
 
+    public static GestorDeSugerencias getInstancia() {
+        if (instancia == null) {
+            instancia = new GestorDeSugerencias();
+        }
+        return instancia;
+    }
     public GestorDeSugerencias() {
         this.usuarios = new ArrayList<>();
         this.atracciones = new ArrayList<>();
@@ -20,23 +26,12 @@ public class GestorDeSugerencias {
     }
 
     public void cargarUsuarios() throws SQLException {
-        if (Config.leerPropiedad("usar_db").equals("si")) {
             this.usuarios = DAOFactory.getUsuarioDAO().cargarUsuarios();
-        } else if (Config.leerPropiedad("usar_db").equals("no")) {
-            this.usuarios = ManejadorDeArchivos.cargarUsuarios(Config.leerPropiedad("path_usuarios"));
-        }
     }
 
     public void cargarProductos() throws SQLException {
-        if (Config.leerPropiedad("usar_db").equals("si")) {
             this.atracciones = DAOFactory.getAtraccionDAO().cargarAtracciones();
             this.promociones = DAOFactory.getPromocionDAO().cargarPromociones();
-        } else if (Config.leerPropiedad("usar_db").equals("no")) {
-            this.atracciones = ManejadorDeArchivos.cargarAtracciones(Config.leerPropiedad("path_atracciones"));
-            this.promociones = ManejadorDeArchivos.cargarPromociones(Config.leerPropiedad("path_promociones"), this.atracciones);
-        } else {
-            throw new RuntimeException("La propiedad usar_db debe ser si o no.");
-        }
     }
 
     public List<Atraccion> getAtracciones() {

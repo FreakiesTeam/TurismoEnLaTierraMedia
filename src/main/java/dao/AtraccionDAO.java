@@ -2,14 +2,15 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
+
 import model.Atraccion;
 
 public interface AtraccionDAO extends GenericDAO<Atraccion>{
 	
 	public abstract Atraccion findByName(String nombre);
 	
-	public abstract ArrayList<Atraccion> cargarAtracciones() throws SQLException;
+	public abstract List<Atraccion> cargarAtracciones() throws SQLException;
 
 	public abstract int obtenerTipoId(String nombreTipo) throws SQLException;
 

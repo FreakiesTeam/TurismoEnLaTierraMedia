@@ -75,6 +75,11 @@ public class AtraccionDAOImpl implements AtraccionDAO {
     }
 
     @Override
+    public int delete(Atraccion atraccion) {
+        return 0;
+    }
+
+    @Override
     public Atraccion findByName(String atraccionNombre) {
         try {
             String sql = "SELECT * FROM atraccion WHERE nombre = ?";
