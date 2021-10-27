@@ -22,9 +22,9 @@ public class PromocionTest {
         atracciones.add(new Atraccion(2, "atraccion2", 60, 1, 1, "AVENTURA"));
         atraccionGratis = new Atraccion(3, "atraccionGratis", 10, 1, 1, "AVENTURA");
 
-        porcentual = new PromoPorcentual("PROMO PORCENTUAL", TipoAtraccion.valueOf("AVENTURA"), atracciones, 50);
-        absoluta = new PromoAbsoluta("PROMO ABSOLUTA", TipoAtraccion.valueOf("AVENTURA"), atracciones, 10);
-        axb = new PromoAxB("PROMO AXB", TipoAtraccion.valueOf("AVENTURA"), atracciones, atraccionGratis);
+        porcentual = new PromoPorcentual(1,"PROMO PORCENTUAL", TipoAtraccion.valueOf("AVENTURA"), atracciones, 50);
+        absoluta = new PromoAbsoluta(2,"PROMO ABSOLUTA", TipoAtraccion.valueOf("AVENTURA"), atracciones, 10);
+        axb = new PromoAxB(3,"PROMO AXB", TipoAtraccion.valueOf("AVENTURA"), atracciones, atraccionGratis);
     }
 
     @Test

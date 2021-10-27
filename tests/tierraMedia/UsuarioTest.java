@@ -33,9 +33,9 @@ public class UsuarioTest {
         atracciones.add(atraccion2);
         atraccionGratis = new Atraccion(3,"atraccionGratis", 10, 3, 3, "AVENTURA");
 
-        axb = new PromoAxB("PROMO AXB", TipoAtraccion.valueOf("AVENTURA"), atracciones, atraccionGratis);
-        absoluta = new PromoAbsoluta("PROMO absoluta", TipoAtraccion.valueOf("AVENTURA"), atracciones, 5);
-        porcentual = new PromoPorcentual("PROMO Porcentual", TipoAtraccion.valueOf("AVENTURA"), atracciones, 10);
+        axb = new PromoAxB(1,"PROMO AXB", TipoAtraccion.valueOf("AVENTURA"), atracciones, atraccionGratis);
+        absoluta = new PromoAbsoluta(2,"PROMO absoluta", TipoAtraccion.valueOf("AVENTURA"), atracciones, 5);
+        porcentual = new PromoPorcentual(3,"PROMO Porcentual", TipoAtraccion.valueOf("AVENTURA"), atracciones, 10);
 
         promociones = new ArrayList<>();
         promociones.add(axb);
@@ -69,7 +69,7 @@ public class UsuarioTest {
         Atraccion erebor = new Atraccion (3,"Erebor",12,3,32,"PAISAJE");
         atracciones.add(minasTirith);
         atracciones.add(abismo);
-        Promocion promo = new PromoAxB("Pack paisajes", TipoAtraccion.valueOf("PAISAJE"), atracciones, erebor);
+        Promocion promo = new PromoAxB(1,"Pack paisajes", TipoAtraccion.valueOf("PAISAJE"), atracciones, erebor);
         Usuario sole = new Usuario(1,"Sole", "PAISAJE", 100, 100);
         itinerario.add(promo);
         sole.setItinerario(itinerario);

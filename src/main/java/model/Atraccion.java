@@ -102,4 +102,17 @@ public class Atraccion implements Producto, Comparable<Atraccion> {
 	public int getId() {
 		return this.id;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Atraccion atraccion = (Atraccion) o;
+		return id == atraccion.id && Objects.equals(nombre, atraccion.nombre);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, nombre);
+	}
 }

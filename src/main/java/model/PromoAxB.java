@@ -31,11 +31,6 @@ public class PromoAxB extends Promocion {
     }
 
     @Override
-    public boolean esPromocion() {
-        return true;
-    }
-
-    @Override
     public boolean esAtraccion() {
         return false;
     }

@@ -84,8 +84,8 @@ public class Usuario {
 				}
 				if (respuesta.equals("SI")) {
 					this.itinerario.add(sugerencia);
-					actualizarDB(sugerencia);
 					this.atraccionesCompradas.addAll(sugerencia.getAtraccionesTotales());
+					actualizarDB(sugerencia);
 					sugerencia.actualizarCupo();
 					System.out.println("Tiempo restante: " + this.tiempoDisponible);
 					System.out.println("Monedas restantes: " + this.monedas);
