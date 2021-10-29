@@ -1,19 +1,38 @@
-package tierraMedia.servicios;
+package model.servicios;
 
+import config.Config;
+import dao.AtraccionDAO;
+import dao.DAOFactory;
+import dao.PromocionDAO;
+import dao.UsuarioDAO;
 import model.Atraccion;
 import model.Promocion;
 import model.Usuario;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 
 
 public class ManejadorDeArchivosTest {
+    UsuarioDAO usuarioDAO;
+    PromocionDAO promocionDAO;
+    AtraccionDAO atraccionDAO;
+
+    @Before
+    public void setup() {
+        Config.usarBD = false;
+        usuarioDAO = DAOFactory.getUsuarioDAO();
+        promocionDAO = DAOFactory.getPromocionDAO();
+        atraccionDAO = DAOFactory.getAtraccionDAO();
+
+    }
 
     @Test
     public void leerUsuariosTest() {
+
         System.out.println("---Usuarios---");
-        List<Usuario> usuarios = ManejadorDeArchivos.cargarUsuarios("entrada/usuarios.txt");
+        List<Usuario> usuarios = usuarioDAO.obtenerTodos();
         for (Usuario usuario : usuarios) {
             System.out.println("Usuario: " + usuario.getNombre());
             System.out.println("Monedas: " + usuario.getMonedas());
@@ -27,7 +46,7 @@ public class ManejadorDeArchivosTest {
     @Test
     public void leerAtraccionesTest() {
         System.out.println("---Atracciones---");
-        List<Atraccion> atracciones = ManejadorDeArchivos.cargarAtracciones("entrada/atracciones.txt");
+        List<Atraccion> atracciones = atraccionDAO.obtenerTodos();
         for (Atraccion atraccion : atracciones) {
             System.out.println("Nombre: " + atraccion.getNombre());
             System.out.println("Costo: " + atraccion.getCosto());
@@ -43,8 +62,8 @@ public class ManejadorDeArchivosTest {
     @Test
     public void leerPromociones() {
         System.out.println("---Promociones---");
-        List<Atraccion> atracciones = ManejadorDeArchivos.cargarAtracciones("entrada/atracciones.txt");
-        List<Promocion> promociones = ManejadorDeArchivos.cargarPromociones("entrada/promociones.txt", atracciones);
+        List<Atraccion> atracciones = atraccionDAO.obtenerTodos();
+        List<Promocion> promociones = promocionDAO.obtenerTodos();
 
         for (Promocion promocion : promociones) {
             System.out.println("Nombre: " + promocion.getNombre());

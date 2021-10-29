@@ -9,7 +9,7 @@ import model.Atraccion;
 public class AtraccionDAOImpl implements AtraccionDAO {
 
 
-    public ArrayList<Atraccion> cargarAtracciones() {
+    public ArrayList<Atraccion> obtenerTodos() {
 
         try {
             String query = "SELECT * FROM atraccion";
@@ -30,35 +30,36 @@ public class AtraccionDAOImpl implements AtraccionDAO {
         }
     }
 
-    @Override
-    public int insert(Atraccion atraccion) {
-        try {
-            Connection conn = ConnectionProvider.getConnection();
+    /*
+        @Override
+        public int insert(Atraccion atraccion) {
+            try {
+                Connection conn = ConnectionProvider.getConnection();
 
-            String sql2 = "SELECT tipo_atraccion_id FROM tipo_atraccion WHERE tipo_atraccion.nombre = ?";
-            PreparedStatement statement2 = conn.prepareStatement(sql2);
-            statement2.setString(1, atraccion.getTipo().toString());
-            ResultSet resultadoId = statement2.executeQuery();
+                String sql2 = "SELECT tipo_atraccion_id FROM tipo_atraccion WHERE tipo_atraccion.nombre = ?";
+                PreparedStatement statement2 = conn.prepareStatement(sql2);
+                statement2.setString(1, atraccion.getTipo().toString());
+                ResultSet resultadoId = statement2.executeQuery();
 
-            String sql = "INSERT INTO atraccion (nombre, precio, tiempo, cupo, tipo_atraccion_id) VALUES (?, ?, ?, ?, ?, ?)";
-            PreparedStatement statement = conn.prepareStatement(sql);
+                String sql = "INSERT INTO atraccion (nombre, precio, tiempo, cupo, tipo_atraccion_id) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setString(1, atraccion.getNombre());
-            statement.setInt(2, atraccion.getCosto());
-            statement.setDouble(3, atraccion.getTiempo());
-            statement.setInt(4, atraccion.getCupoDisponible());
-            statement.setInt(5, resultadoId.getInt(1));
+                statement.setString(1, atraccion.getNombre());
+                statement.setInt(2, atraccion.getCosto());
+                statement.setDouble(3, atraccion.getTiempo());
+                statement.setInt(4, atraccion.getCupoDisponible());
+                statement.setInt(5, resultadoId.getInt(1));
 
-            int rows = statement.executeUpdate();
-            conn.close();
-            return rows;
-        } catch (Exception e) {
-            throw new MissingDataException(e);
+                int rows = statement.executeUpdate();
+                conn.close();
+                return rows;
+            } catch (Exception e) {
+                throw new MissingDataException(e);
+            }
         }
-    }
-
+    */
     @Override
-    public int update(Atraccion atraccion) {
+    public int actualizar(Atraccion atraccion) {
         try {
             String sql = "UPDATE atraccion SET cupo = ? WHERE nombre = ?";
             Connection conn = ConnectionProvider.getConnection();
@@ -75,15 +76,11 @@ public class AtraccionDAOImpl implements AtraccionDAO {
     }
 
     @Override
-    public int delete(Atraccion atraccion) {
-        return 0;
-    }
-
-    @Override
     public Atraccion findByName(String atraccionNombre) {
         try {
             String sql = "SELECT * FROM atraccion WHERE nombre = ?";
             Connection conn = ConnectionProvider.getConnection();
+
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, atraccionNombre);
             ResultSet resultados = statement.executeQuery();
@@ -133,19 +130,8 @@ public class AtraccionDAOImpl implements AtraccionDAO {
         return new Atraccion(id, nombre, costo, tiempo, cupo, nombreTipoAtraccion);
     }
 
-    public int obtenerTipoId(String nombreTipo) throws SQLException {
-        Connection conn = ConnectionProvider.getConnection();
-        String sql2 = "SELECT tipo_atraccion_id FROM tipo_atraccion WHERE tipo_atraccion.nombre = ?";
-        PreparedStatement statement2 = conn.prepareStatement(sql2);
-        statement2.setString(1, nombreTipo);
-
-        ResultSet resultadoId = statement2.executeQuery();
-        conn.close();
-        return resultadoId.getInt(1);
-    }
-
     public String obtenerTipoNombre(int idTipo) throws SQLException {
-        //language=SQL
+
         String sql = "SELECT nombre FROM tipo_atraccion WHERE tipo_atraccion_id = ?";
         Connection conn = ConnectionProvider.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -153,7 +139,7 @@ public class AtraccionDAOImpl implements AtraccionDAO {
         ResultSet resultadoId = statement.executeQuery();
 
         String nombre = "";
-        if(resultadoId.next()){
+        if (resultadoId.next()) {
             nombre = resultadoId.getString(1).toUpperCase();
         }
 

@@ -1,12 +1,16 @@
 package dao;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 import model.Promocion;
 
-public interface PromocionDAO extends GenericDAO<Promocion>{
-	
-	public abstract Promocion findByName(String nombre);
-	
-	public abstract List<Promocion> cargarPromociones();
+public interface PromocionDAO {
+
+    public abstract List<Promocion> obtenerTodos();
+
+    public int actualizar(Promocion promocion);
+
+    public Promocion toPromocion(Object objeto);
+
 }

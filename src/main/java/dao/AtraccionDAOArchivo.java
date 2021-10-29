@@ -13,8 +13,8 @@ import java.util.List;
 
 public class AtraccionDAOArchivo implements AtraccionDAO {
 
+    public List<Atraccion> obtenerTodos() {
 
-    public List<Atraccion> cargarAtracciones() {
         FileReader fr = null;
         BufferedReader br = null;
         List<Atraccion> atracciones = new ArrayList<>();
@@ -26,13 +26,16 @@ public class AtraccionDAOArchivo implements AtraccionDAO {
             String linea = br.readLine();
             while ((linea != null)) {
                 String[] datos = linea.split(";");
-                String nombre = datos[0];
-                int costo = Integer.parseInt(datos[1]);
-                double tiempo = Double.parseDouble(datos[2]);
-                int cupoDiario = Integer.parseInt(datos[3]);
-                String tipo = datos[4];
+                int id = Integer.parseInt(datos[0]);
+                String nombre = datos[1];
+                int costo = Integer.parseInt(datos[2]);
+                double tiempo = Double.parseDouble(datos[3]);
+                int cupoDiario = Integer.parseInt(datos[4]);
+                String tipo = datos[5];
 
-                atracciones.add(new Atraccion(1, nombre, costo, tiempo, cupoDiario, tipo));
+                Atraccion atraccion = new Atraccion(id, nombre, costo, tiempo, cupoDiario, tipo);
+
+                atracciones.add(atraccion);
                 linea = br.readLine();
             }
 
@@ -51,13 +54,8 @@ public class AtraccionDAOArchivo implements AtraccionDAO {
     }
 
     @Override
-    public int obtenerTipoId(String nombreTipo) throws SQLException {
+    public int actualizar(Atraccion atraccion) {
         return 0;
-    }
-
-    @Override
-    public String obtenerTipoNombre(int idTipo) throws SQLException {
-        return null;
     }
 
     @Override
@@ -68,21 +66,6 @@ public class AtraccionDAOArchivo implements AtraccionDAO {
     @Override
     public Atraccion findById(int id) {
         return null;
-    }
-
-    @Override
-    public int insert(Atraccion atraccion) {
-        return 0;
-    }
-
-    @Override
-    public int update(Atraccion atraccion) {
-        return 0;
-    }
-
-    @Override
-    public int delete(Atraccion atraccion) {
-        return 0;
     }
 
     @Override

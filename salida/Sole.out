@@ -1,8 +1,18 @@
 <<< Itinerario de Sole>>>
 
-Nombre del producto: Minas Tirith
+Nombre del producto: Pack paisajes
 Tipo de atracción: PAISAJE
-Costo: 5 Tiempo: 2.5
+Costo: 10 Tiempo: 7.5
+---------------------------------
+
+Nombre del producto: Pack aventura
+Tipo de atracción: AVENTURA
+Costo: 23 Tiempo: 7.0
+---------------------------------
+
+Nombre del producto: Pack degustacion
+Tipo de atracción: DEGUSTACION
+Costo: 2 Tiempo: 7.5
 ---------------------------------
 
 Nombre del producto: Moria
@@ -11,6 +21,12 @@ Costo: 10 Tiempo: 2.0
 ---------------------------------
 Atracciones a visitar: 
 Minas Tirith
+Abismo de Helm
+Erebor
+Bosque negro
+Mordor
+Lothlorien
+La Comarca
 Moria
-Costo total: 15
-Tiempo total: 4.5
+Costo total: 45
+Tiempo total: 24.0

@@ -1,9 +1,10 @@
-package tierraMedia.servicios;
+package model.servicios;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import model.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class GestorDeSugerenciasTest {
 
     @Before
     public void setUp() throws IOException {
-        gestor = new GestorDeSugerencias();
+        gestor = GestorDeSugerencias.getInstancia();
         atracciones = new ArrayList<>();
         atraccion1 = new Atraccion(1,"atraccion1", 40, 1, 1, "AVENTURA");
         atraccion2 = new Atraccion(2,"atraccion2", 60, 2, 2, "AVENTURA");
@@ -55,13 +56,15 @@ public class GestorDeSugerenciasTest {
     @Test
     public void ordenarPromocionesTest() {
         gestor.setPromociones(promociones);
+        gestor.setAtracciones(new ArrayList<>());
         List<Producto> sugerencia = gestor.generarSugerenciasPara(usuario);
 
-        List<Promocion> esperado = new ArrayList<>();
+        List<Producto> esperado = new ArrayList<>();
 
         esperado.add(axb);
         esperado.add(absoluta);
         esperado.add(porcentual);
+
 
         Assert.assertEquals(esperado, sugerencia);
 

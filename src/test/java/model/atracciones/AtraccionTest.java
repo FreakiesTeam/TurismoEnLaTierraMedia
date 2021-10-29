@@ -1,4 +1,4 @@
-package tierraMedia.atracciones;
+package model.atracciones;
 
 import model.Atraccion;
 import org.junit.Assert;
@@ -10,7 +10,6 @@ public class AtraccionTest {
 
     @Before
     public void setUp() {
-        //TODO sacar ID o poner ID a todo?
         atraccion = new Atraccion(1,"atraccion1", 40, 1, 1, "AVENTURA");
     }
 
@@ -23,13 +22,10 @@ public class AtraccionTest {
     public void tiempoAtraccionTest() {
         Assert.assertEquals(1,atraccion.getTiempo(),0);
     }
-
     @Test
     public void tieneCupoTest() {
-        Assert.assertEquals(true, atraccion.tieneCupo());
+        Assert.assertTrue(atraccion.tieneCupo());
         atraccion.actualizarCupo();
-        Assert.assertEquals(false, atraccion.tieneCupo());
-
+        Assert.assertFalse(atraccion.tieneCupo());
     }
-
 }

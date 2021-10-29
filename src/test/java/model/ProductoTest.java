@@ -1,10 +1,8 @@
-package tierraMedia;
+package model;
 
-import model.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import tierraMedia.servicios.GestorDeSugerencias;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +39,7 @@ public class ProductoTest {
         promociones.add(porcentual);
 
         usuario = new Usuario(1,"Maria", "AVENTURA", 150, 120);
-        gestor = new GestorDeSugerencias();
+        gestor = GestorDeSugerencias.getInstancia();
     }
 
     @Test

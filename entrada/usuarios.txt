@@ -1,7 +1,7 @@
-Sole;paisaje;100;100
-Eowyn;aventura;10;8
-Gandalf;paisaje;100;5
-Sam;degustación;36;8
-Galadriel;paisaje;120;1
+1;Sole;paisaje;100;100
+2;Eowyn;aventura;10;8
+3;Gandalf;paisaje;100;5
+4;Sam;degustacion;36;8
+5;Galadriel;paisaje;120;1
 
 

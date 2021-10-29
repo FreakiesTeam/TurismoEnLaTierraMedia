@@ -1,6 +1,5 @@
 package model;
 
-import java.io.*;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -105,13 +104,18 @@ public class Usuario {
         this.tiempoDisponible -= sugerencia.getTiempo();
         UsuarioDAO usuarioDAO = DAOFactory.getUsuarioDAO();
 
-        usuarioDAO.update(this);
+        usuarioDAO.actualizar(this);
+    }
+
+    public List<Atraccion> getAtraccionesCompradas() {
+        return this.atraccionesCompradas;
     }
 
     public boolean noSeVisito(Producto sugerencia) {
         if (sugerencia.esAtraccion()) {
             return !atraccionesCompradas.contains((Atraccion) sugerencia);
         }
+
         if (sugerencia.esPromocion()) {
             List<Atraccion> atraccionesPromo = ((Promocion) sugerencia).getAtracciones();
             boolean noContieneGratis = true;
@@ -124,36 +128,12 @@ public class Usuario {
         return false;
     }
 
-
-    public void escribirArchivo() throws IOException {
-        String path = "salida/" + this.nombre + ".out";
-        PrintWriter salida = new PrintWriter(new FileWriter(path));
-
-        salida.println("<<< Itinerario de " + this.getNombre() + ">>>");
-
-        int costoTotal = 0;
-        double tiempoTotal = 0;
-        for (Producto producto : itinerario) {
-            salida.println();
-            salida.println("Nombre del producto: " + producto.getNombre());
-            salida.println("Tipo de atracción: " + producto.getTipo());
-            salida.print("Costo: " + producto.getCosto());
-            salida.println(" Tiempo: " + producto.getTiempo());
-            costoTotal += producto.getCosto();
-            tiempoTotal += producto.getTiempo();
-            salida.println("---------------------------------");
-        }
-        salida.println("Atracciones a visitar: ");
-        for (Atraccion atraccion : atraccionesCompradas) {
-            salida.println(atraccion.getNombre());
-        }
-        salida.println("Costo total: " + costoTotal);
-        salida.println("Tiempo total: " + tiempoTotal);
-        salida.close();
-    }
-
     public void setItinerario(List<Producto> itinerario) {
         this.itinerario = itinerario;
+    }
+
+    public List<Producto> getItinerario() {
+        return itinerario;
     }
 
     public void actualizarItinerario() {
@@ -161,12 +141,21 @@ public class Usuario {
         usuarioDAO.actualizarItinerario(this);
     }
 
-    public List<Producto> getItinerario() {
-        return itinerario;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre);
     }
 
-
-    public List<Atraccion> getAtraccionesCompradas() {
-        return this.atraccionesCompradas;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Usuario other = (Usuario) obj;
+        return id == other.id && Objects.equals(nombre, other.nombre);
     }
+
 }

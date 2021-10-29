@@ -18,7 +18,7 @@ public class DAOFactory {
 
     public static PromocionDAO getPromocionDAO() {
         if (Config.usarBD)
-        return new PromocionDAOImpl();
+            return new PromocionDAOImpl();
         else return new PromocionDAOArchivo();
     }
 }

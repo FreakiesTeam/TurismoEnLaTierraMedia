@@ -1,8 +1,8 @@
-Moria;10;2;6;Aventura
-Minas Tirith;5;2.5;25;Paisaje
-La Comarca;3;6.5;150;Degustación
-Mordor;25;3;4;Aventura
-Abismo de Helm;5;2;15;Paisaje
-Lothlórien;35;1;30;Degustación
-Erebor;12;3;32;Paisaje
-Bosque negro;3;4;12;Aventura
+1;Moria;10;2;6;Aventura
+2;Minas Tirith;5;2.5;25;Paisaje
+3;La Comarca;3;6.5;150;Degustacion
+4;Mordor;25;3;4;Aventura
+5;Abismo de Helm;5;2;15;Paisaje
+6;Lothlorien;35;1;30;Degustacion
+7;Erebor;12;3;32;Paisaje
+8;Bosque negro;3;4;12;Aventura

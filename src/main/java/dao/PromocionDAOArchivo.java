@@ -2,8 +2,7 @@ package dao;
 
 import config.Config;
 import model.*;
-import tierraMedia.servicios.GestorDeSugerencias;
-import tierraMedia.servicios.ManejadorDeArchivos;
+import model.GestorDeSugerencias;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,7 +13,7 @@ import java.util.List;
 public class PromocionDAOArchivo implements PromocionDAO {
 
     @Override
-    public List<Promocion> cargarPromociones() {
+    public List<Promocion> obtenerTodos() {
         FileReader fr = null;
         BufferedReader br = null;
         List<Promocion> promociones = new ArrayList<>();
@@ -27,29 +26,13 @@ public class PromocionDAOArchivo implements PromocionDAO {
 
             String linea = br.readLine();
             while ((linea != null)) {
-                String[] datos = linea.split(";");
-                String nombre = datos[0];
-                TipoAtraccion tipoAtraccion = TipoAtraccion.valueOf(datos[1].toUpperCase());
-                String atr = datos[2];
-                String[] atraccionesStr = atr.split(",");
-                List<Atraccion> atraccionesPromo = this.atraccionesStrToList(atraccionesStr, atracciones);
-                String tipoPromo = datos[3];
-
-
-                if (datos[3].equals("absoluta")) {
-                    int monedas = Integer.parseInt(datos[4]);
-                    promociones.add(new PromoAbsoluta(0, nombre, tipoAtraccion, atraccionesPromo, monedas));
-                } else if (tipoPromo.equals("porcentual")) {
-                    int porcentaje = Integer.parseInt(datos[4]);
-                    promociones.add(new PromoPorcentual(0, nombre, tipoAtraccion, atraccionesPromo, porcentaje));
-                } else if (tipoPromo.equals("AxB")) {
-                    Atraccion atraccion = this.obtenerAtraccionDesdeNombre(datos[4], atracciones);
-                    promociones.add(new PromoAxB(0, nombre, tipoAtraccion, atraccionesPromo, atraccion));
-                } else {
-                    throw new Error("Tipo de promoción incorrecto.");
-                }
+                Promocion promocion = toPromocion(linea);
+                promociones.add(promocion);
 
                 linea = br.readLine();
+            }
+            for (Promocion promo:promociones) {
+                System.out.println(promo.getNombre());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,11 +48,47 @@ public class PromocionDAOArchivo implements PromocionDAO {
         }
     }
 
+    public Promocion toPromocion(Object objeto) {
+        String linea = (String) objeto;
+        Promocion promocion = null;
+        List<Atraccion> atracciones = GestorDeSugerencias.getInstancia().getAtracciones();
+
+        String[] datos = linea.split(";");
+        int id = Integer.parseInt(datos[0]);
+        String nombre = datos[1];
+        TipoAtraccion tipoAtraccion = TipoAtraccion.valueOf(datos[2].toUpperCase());
+        String atr = datos[3];
+        String[] atraccionesStr = atr.split(",");
+        List<Atraccion> atraccionesPromo = this.atraccionesStrToList(atraccionesStr, atracciones);
+        String tipoPromo = datos[4];
+
+
+        if (tipoPromo.equals("absoluta")) {
+            int monedas = Integer.parseInt(datos[5]);
+            promocion = new PromoAbsoluta(id, nombre, tipoAtraccion, atraccionesPromo, monedas);
+        } else if (tipoPromo.equals("porcentual")) {
+            int porcentaje = Integer.parseInt(datos[5]);
+            promocion = new PromoPorcentual(id, nombre, tipoAtraccion, atraccionesPromo, porcentaje);
+        } else if (tipoPromo.equals("AxB")) {
+            Atraccion atraccion = this.obtenerAtraccionDesdeNombre(datos[5], atracciones);
+            promocion = new PromoAxB(id, nombre, tipoAtraccion, atraccionesPromo, atraccion);
+        } else {
+            throw new Error("Tipo de promoción incorrecto.");
+        }
+
+        return promocion;
+    }
+
+    @Override
+    public int actualizar(Promocion promocion) {
+        return 0;
+    }
+
     public static List<Atraccion> atraccionesStrToList(String[] atraccionesStrings, List<Atraccion> atracciones) {
         List<Atraccion> atraccionesObj = new ArrayList<>();
 
         for (int i = 0; i < atraccionesStrings.length; i++) {
-            atraccionesObj.add(ManejadorDeArchivos.obtenerAtraccionDesdeNombre(atraccionesStrings[i], atracciones));
+            atraccionesObj.add(obtenerAtraccionDesdeNombre(atraccionesStrings[i], atracciones));
         }
         return atraccionesObj;
     }
@@ -82,26 +101,5 @@ public class PromocionDAOArchivo implements PromocionDAO {
         }
         return null;
     }
-
-    @Override
-    public int insert(Promocion promocion) {
-        return 0;
-    }
-
-    @Override
-    public int update(Promocion promocion) {
-        return 0;
-    }
-
-    @Override
-    public int delete(Promocion promocion) {
-        return 0;
-    }
-
-    @Override
-    public Promocion findByName(String nombre) {
-        return null;
-    }
-
 
 }

@@ -38,7 +38,7 @@ public class Atraccion implements Producto, Comparable<Atraccion> {
 	public void actualizarCupo() {
 		this.cupoDisponible--;
 		AtraccionDAO atraccionDAO = DAOFactory.getAtraccionDAO();
-		atraccionDAO.update(this);
+		atraccionDAO.actualizar(this);
 
 	}
 

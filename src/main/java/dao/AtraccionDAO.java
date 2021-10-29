@@ -6,17 +6,15 @@ import java.util.List;
 
 import model.Atraccion;
 
-public interface AtraccionDAO extends GenericDAO<Atraccion>{
-	
-	public abstract Atraccion findByName(String nombre);
-	
-	public abstract List<Atraccion> cargarAtracciones() throws SQLException;
+public interface AtraccionDAO {
 
-	public abstract int obtenerTipoId(String nombreTipo) throws SQLException;
+    public abstract Atraccion findByName(String nombre);
 
-	public abstract String obtenerTipoNombre(int idTipo) throws SQLException;
+    public abstract List<Atraccion> obtenerTodos();
 
-	public Atraccion toAtraccion(ResultSet resultados) throws SQLException;
+    public int actualizar(Atraccion atraccion);
 
-	public Atraccion findById(int id);
+    public Atraccion toAtraccion(ResultSet resultados) throws SQLException;
+
+    public Atraccion findById(int id);
 }

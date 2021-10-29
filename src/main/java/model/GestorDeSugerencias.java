@@ -1,11 +1,10 @@
-package tierraMedia.servicios;
+package model;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 
 import dao.DAOFactory;
-import model.*;
 
 public class GestorDeSugerencias {
     private static GestorDeSugerencias instancia;
@@ -19,19 +18,19 @@ public class GestorDeSugerencias {
         }
         return instancia;
     }
-    public GestorDeSugerencias() {
+    private GestorDeSugerencias() {
         this.usuarios = new ArrayList<>();
         this.atracciones = new ArrayList<>();
         this.promociones = new ArrayList<>();
     }
 
     public void cargarUsuarios() throws SQLException {
-            this.usuarios = DAOFactory.getUsuarioDAO().cargarUsuarios();
+            this.usuarios = DAOFactory.getUsuarioDAO().obtenerTodos();
     }
 
     public void cargarProductos() throws SQLException {
-            this.atracciones = DAOFactory.getAtraccionDAO().cargarAtracciones();
-            this.promociones = DAOFactory.getPromocionDAO().cargarPromociones();
+            this.atracciones = DAOFactory.getAtraccionDAO().obtenerTodos();
+            this.promociones = DAOFactory.getPromocionDAO().obtenerTodos();
     }
 
     public List<Atraccion> getAtracciones() {

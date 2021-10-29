@@ -1,4 +1,4 @@
-package tierraMedia.promociones;
+package model.promociones;
 
 import org.junit.Assert;
 import org.junit.Before;

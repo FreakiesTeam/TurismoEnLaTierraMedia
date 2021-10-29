@@ -6,13 +6,13 @@ import model.Producto;
 import model.Usuario;
 
 import java.io.*;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDAOArchivo implements UsuarioDAO {
 
-    public List<Usuario> cargarUsuarios() {
+
+    public List<Usuario> obtenerTodos() {
         FileReader fr = null;
         BufferedReader br = null;
         List<Usuario> usuarios = new ArrayList<>();
@@ -23,13 +23,8 @@ public class UsuarioDAOArchivo implements UsuarioDAO {
 
             String linea = br.readLine();
             while ((linea != null)) {
-                String[] datos = linea.split(";");
-                String nombre = datos[0];
-                String preferencia = datos[1];
-                int monedas = Integer.parseInt(datos[2]);
-                int tiempo = Integer.parseInt(datos[3]);
-
-                usuarios.add(new Usuario(1, nombre, preferencia, monedas, tiempo));
+                Usuario usuario = toUsuario(linea);
+                usuarios.add(usuario);
                 linea = br.readLine();
             }
 
@@ -47,26 +42,16 @@ public class UsuarioDAOArchivo implements UsuarioDAO {
         }
     }
 
-    @Override
-    public int insert(Usuario usuario) {
-        return 0;
-    }
+    private Usuario toUsuario(String linea) {
+        String[] datos = linea.split(";");
+        int id = Integer.parseInt(datos[0]);
+        String nombre = datos[1];
+        String preferencia = datos[2];
+        int monedas = Integer.parseInt(datos[3]);
+        int tiempo = Integer.parseInt(datos[4]);
 
-    @Override
-    public int update(Usuario usuario) {
-        return 0;
+        return new Usuario(id, nombre, preferencia, monedas, tiempo);
     }
-
-    @Override
-    public int delete(Usuario usuario) {
-        return 0;
-    }
-
-    @Override
-    public Usuario findByUsername(String username) {
-        return null;
-    }
-
 
     @Override
     public int actualizarItinerario(Usuario usuario) {
@@ -99,6 +84,17 @@ public class UsuarioDAOArchivo implements UsuarioDAO {
             throw new RuntimeException("Error");
         }
         return 0;
+    }
+
+    @Override
+    public int actualizar(Usuario usuario) {
+        return 0;
+    }
+
+    @Override
+    public Usuario toUsuario(Object objeto) {
+
+        return null;
     }
 }
 
