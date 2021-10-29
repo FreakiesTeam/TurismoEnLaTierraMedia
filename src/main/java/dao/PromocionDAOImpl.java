@@ -3,17 +3,18 @@ package dao;
 import java.sql.*;
 import java.util.*;
 
+import config.Config;
 import jdbc.ConnectionProvider;
 import model.*;
 
 public class PromocionDAOImpl implements PromocionDAO {
 
     @Override
-    public ArrayList<Promocion> obtenerTodos() {
+    public ArrayList<Promocion> obtenerTodos(String url) {
 
         try {
             String query = "SELECT * FROM promocion";
-            Connection con = ConnectionProvider.getConnection();
+            Connection con = ConnectionProvider.getConnection(url);
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
@@ -61,7 +62,7 @@ public class PromocionDAOImpl implements PromocionDAO {
         List<Atraccion> atracciones = this.obtenerAtraccionesDePromocion(idPromo);
 
         if (tipo_promocion.equals("AXB")) {
-            Atraccion atraccionGratis = atraccionDAO.findByName(descuento);
+            Atraccion atraccionGratis = atraccionDAO.obtenerPorNombre(descuento);
 
             promocion = new PromoAxB(idPromo, nombre, tipo_atraccion, atracciones, atraccionGratis);
 
@@ -86,7 +87,7 @@ public class PromocionDAOImpl implements PromocionDAO {
     private List<Atraccion> obtenerAtraccionesDePromocion(int idPromocion) throws SQLException {
 
         String sql = "SELECT * FROM atraccion_x_promocion WHERE promocion_id = ?";
-        Connection conn = ConnectionProvider.getConnection();
+        Connection conn = ConnectionProvider.getConnection(Config.leerPropiedad("db"));
         PreparedStatement statement2 = conn.prepareStatement(sql);
         statement2.setInt(1, idPromocion);
         ResultSet resultados = statement2.executeQuery();
@@ -95,7 +96,7 @@ public class PromocionDAOImpl implements PromocionDAO {
         AtraccionDAO atraccionDAO = DAOFactory.getAtraccionDAO();
 
         while (resultados.next()) {
-            Atraccion atraccion = atraccionDAO.findById(resultados.getInt(2));
+            Atraccion atraccion = atraccionDAO.obtenerPorId(resultados.getInt(2));
             atracciones.add(atraccion);
         }
 
@@ -103,7 +104,7 @@ public class PromocionDAOImpl implements PromocionDAO {
     }
 
     public String obtenerTipoNombre(int idTipo) throws SQLException {
-        Connection conn = ConnectionProvider.getConnection();
+        Connection conn = ConnectionProvider.getConnection(Config.leerPropiedad("db"));
         String sql2 = "SELECT nombre FROM tipo_promocion WHERE id = ?";
         PreparedStatement statement2 = conn.prepareStatement(sql2);
         statement2.setInt(1, idTipo);

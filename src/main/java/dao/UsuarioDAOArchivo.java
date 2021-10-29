@@ -12,7 +12,7 @@ import java.util.List;
 public class UsuarioDAOArchivo implements UsuarioDAO {
 
 
-    public List<Usuario> obtenerTodos() {
+    public List<Usuario> obtenerTodos(String url) {
         FileReader fr = null;
         BufferedReader br = null;
         List<Usuario> usuarios = new ArrayList<>();

@@ -65,7 +65,6 @@ public class GestorDeSugerenciasTest {
         esperado.add(absoluta);
         esperado.add(porcentual);
 
-
         Assert.assertEquals(esperado, sugerencia);
 
     }

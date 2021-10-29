@@ -6,10 +6,9 @@ import java.sql.SQLException;
 
 public class ConnectionProvider {
 
-	private static String url = "jdbc:sqlite:tierraMedia.db";
 	private static Connection connection;
 	
-	public static Connection getConnection() throws SQLException {
+	public static Connection getConnection(String url) throws SQLException {
 		if (connection == null) {
 			connection = DriverManager.getConnection(url);			
 		}

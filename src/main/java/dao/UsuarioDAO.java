@@ -13,5 +13,5 @@ public interface UsuarioDAO {
 
     Usuario toUsuario(Object objeto) throws SQLException;
 
-    public List<Usuario> obtenerTodos();
+    public List<Usuario> obtenerTodos(String url);
 }

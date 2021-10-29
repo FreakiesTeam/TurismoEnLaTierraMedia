@@ -52,10 +52,8 @@ public class Usuario {
         Scanner in = new Scanner(System.in);
         String respuesta;
 
-        System.out.println("¡Hola," + this.getNombre() + "!");
-        System.out.println("Tus monedas:" + this.monedas);
-        System.out.println("Tu tiempo disponible:" + this.tiempoDisponible + " horas");
-        System.out.println("Tu preferencia: " + this.tipoPreferido);
+        mostrarPresentacion();
+        productosSinCupo(sugerencias);
         System.out.println("---Armá tu itinerario---");
 
         for (Producto sugerencia : sugerencias) {
@@ -68,35 +66,70 @@ public class Usuario {
                 break;
             }
 
-            if (this.monedas >= sugerencia.getCosto() && this.tiempoDisponible >= sugerencia.getTiempo()
-                    && this.noSeVisito(sugerencia) && sugerencia.tieneCupo()) {
-
-                System.out.println("Nombre: " + sugerencia.getNombre());
-                System.out.println("Precio: " + sugerencia.getCosto() + " monedas");
-                System.out.println("Tiempo: " + sugerencia.getTiempo() + " horas");
-                System.out.println("Tipo: " + sugerencia.getTipo());
-                System.out.println("Querés comprarlo?(Si/No)");
+            if (puedeComprar(sugerencia)) {
+                mostrarProducto(sugerencia);
                 respuesta = in.nextLine().toUpperCase();
 
                 while (!respuesta.equals("SI") && !respuesta.equals("NO")) {
                     System.out.println("Por favor, ingresá Si o No.");
                     respuesta = in.nextLine().toUpperCase();
                 }
+
                 if (respuesta.equals("SI")) {
-                    this.itinerario.add(sugerencia);
-                    this.atraccionesCompradas.addAll(sugerencia.getAtraccionesTotales());
-                    this.actualizarUsuario(sugerencia);
-                    sugerencia.actualizarCupo();
-                    System.out.println("Tiempo restante: " + this.tiempoDisponible);
-                    System.out.println("Monedas restantes: " + this.monedas);
-                    System.out.println("--------------------------");
+                    adquirirProducto(sugerencia);
                 }
+                System.out.println("---------------------------------");
             }
         }
 
         System.out.println("¡Listo! Itinerario generado.");
-        System.out.println("--------------------------");
+        System.out.println("---------------------------------");
 
+    }
+
+    private void adquirirProducto(Producto sugerencia) throws SQLException {
+        this.itinerario.add(sugerencia);
+        this.atraccionesCompradas.addAll(sugerencia.getAtraccionesTotales());
+        this.actualizarUsuario(sugerencia);
+        sugerencia.actualizarCupo();
+        System.out.println("Tiempo restante: " + this.tiempoDisponible);
+        System.out.println("Monedas restantes: " + this.monedas);
+    }
+
+    private void mostrarProducto(Producto sugerencia) {
+        System.out.println("Nombre: " + sugerencia.getNombre());
+        System.out.println("Precio: " + sugerencia.getCosto() + " monedas");
+        System.out.println("Tiempo: " + sugerencia.getTiempo() + " horas");
+        System.out.println("Tipo: " + sugerencia.getTipo());
+        System.out.println("Querés comprarlo?(Si/No)");
+    }
+
+    private boolean puedeComprar(Producto sugerencia) {
+        return this.monedas >= sugerencia.getCosto() && this.tiempoDisponible >= sugerencia.getTiempo()
+                && this.noSeVisito(sugerencia) && sugerencia.tieneCupo();
+    }
+
+    private void mostrarPresentacion() {
+        System.out.println("¡Hola, " + this.getNombre() + "!");
+        System.out.println("Tus monedas: " + this.monedas);
+        System.out.println("Tu tiempo disponible: " + this.tiempoDisponible + " horas");
+        System.out.println("Tu preferencia: " + this.tipoPreferido);
+    }
+
+    private void productosSinCupo(List<Producto> sugerencias) {
+        boolean hayAtraccionSinCupo = false;
+        for (Producto producto : sugerencias) {
+
+            if (!producto.tieneCupo() && !hayAtraccionSinCupo) {
+                hayAtraccionSinCupo = true;
+                System.out.println("Los siguientes productos ya no tienen cupo:");
+            }
+
+            if (!producto.tieneCupo()) {
+                System.out.println("-" + producto.getNombre());
+            }
+
+        }
     }
 
     private void actualizarUsuario(Producto sugerencia) throws SQLException {

@@ -7,7 +7,7 @@ import model.Promocion;
 
 public interface PromocionDAO {
 
-    public abstract List<Promocion> obtenerTodos();
+    public abstract List<Promocion> obtenerTodos(String url);
 
     public int actualizar(Promocion promocion);
 

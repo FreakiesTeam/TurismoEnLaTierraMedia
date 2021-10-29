@@ -13,7 +13,7 @@ import java.util.List;
 public class PromocionDAOArchivo implements PromocionDAO {
 
     @Override
-    public List<Promocion> obtenerTodos() {
+    public List<Promocion> obtenerTodos(String url) {
         FileReader fr = null;
         BufferedReader br = null;
         List<Promocion> promociones = new ArrayList<>();
@@ -31,9 +31,7 @@ public class PromocionDAOArchivo implements PromocionDAO {
 
                 linea = br.readLine();
             }
-            for (Promocion promo:promociones) {
-                System.out.println(promo.getNombre());
-            }
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

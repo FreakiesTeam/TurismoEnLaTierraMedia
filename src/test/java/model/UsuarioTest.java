@@ -6,7 +6,6 @@ import dao.UsuarioDAO;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import model.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -54,7 +53,7 @@ public class UsuarioTest {
         atracciones.add(minasTirith);
         atracciones.add(abismo);
         Promocion promo = new PromoAxB(1,"Pack paisajes", TipoAtraccion.valueOf("PAISAJE"), atracciones, erebor);
-        usuarioTest = new Usuario(0,"Test", "PAISAJE", 100, 100);
+        usuarioTest = new Usuario(2,"Test", "PAISAJE", 100, 100);
         itinerario.add(promo);
         usuarioTest.setItinerario(itinerario);
         compradas = new ArrayList<>();
@@ -81,7 +80,7 @@ public class UsuarioTest {
     }
 
     @Test
-    public void actualizarItinerarioArchivoTest() throws IOException {
+    public void actualizarItinerarioArchivoTest() {
         //Comparamos el archivo que se genera en el test con uno con los valores esperados
         Config.usarBD = false;
 
@@ -90,8 +89,8 @@ public class UsuarioTest {
 
         FileReader fr1 = null;
         FileReader fr2 = null;
-        BufferedReader br1 = null;
-        BufferedReader br2 = null;
+        BufferedReader br1;
+        BufferedReader br2;
 
         try {
             fr1 = new FileReader("salida/test.out");
@@ -123,14 +122,6 @@ public class UsuarioTest {
             File f= new File("salida/test.out");
             f.delete();
         }
-    }
-
-    @Test
-    public void actualizarItinerarioDBTest(){
-        Config.usarBD = true;
-
-        UsuarioDAO usuarioDAO = DAOFactory.getUsuarioDAO();
-        usuarioDAO.actualizarItinerario(usuarioTest);
     }
 
 

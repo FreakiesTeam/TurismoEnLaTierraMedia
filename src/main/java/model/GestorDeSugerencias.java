@@ -1,6 +1,5 @@
 package model;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -18,27 +17,27 @@ public class GestorDeSugerencias {
         }
         return instancia;
     }
+
     private GestorDeSugerencias() {
         this.usuarios = new ArrayList<>();
         this.atracciones = new ArrayList<>();
         this.promociones = new ArrayList<>();
     }
 
-    public void cargarUsuarios() throws SQLException {
-            this.usuarios = DAOFactory.getUsuarioDAO().obtenerTodos();
+    public void cargarUsuarios(String url) {
+            this.usuarios = DAOFactory.getUsuarioDAO().obtenerTodos(url);
     }
 
-    public void cargarProductos() throws SQLException {
-            this.atracciones = DAOFactory.getAtraccionDAO().obtenerTodos();
-            this.promociones = DAOFactory.getPromocionDAO().obtenerTodos();
+    public void cargarPromociones(String url) {
+            this.promociones = DAOFactory.getPromocionDAO().obtenerTodos(url);
+    }
+
+    public void cargarAtracciones(String  url) {
+        this.atracciones = DAOFactory.getAtraccionDAO().obtenerTodos(url);
     }
 
     public List<Atraccion> getAtracciones() {
         return this.atracciones;
-    }
-
-    public List<Promocion> getPromociones() {
-        return promociones;
     }
 
     public void setAtracciones(List<Atraccion> atracciones) {
@@ -54,11 +53,11 @@ public class GestorDeSugerencias {
         List<Promocion> otroTipo = new ArrayList<>();
 
         //Separo las promociones del tipo preferido de los otros
-        for (int i = 0; i < promociones.size(); i++) {
-            if (promociones.get(i).getTipo().equals(tipo)) {
-                sugerencias.add(promociones.get(i));
+        for (Promocion promociones : promociones) {
+            if (promociones.getTipo().equals(tipo)) {
+                sugerencias.add(promociones);
             } else
-                otroTipo.add(promociones.get(i));
+                otroTipo.add(promociones);
         }
 
         //Ordeno por costo y si hay empate por tiempo
@@ -74,11 +73,11 @@ public class GestorDeSugerencias {
         List<Atraccion> sugerencias = new ArrayList<>();
         List<Atraccion> otrasAtracciones = new ArrayList<>();
 
-        for (int i = 0; i < atracciones.size(); i++) {
-            if (atracciones.get(i).getTipo().equals(tipo)) {
-                sugerencias.add(atracciones.get(i));
+        for (Atraccion atraccione : atracciones) {
+            if (atraccione.getTipo().equals(tipo)) {
+                sugerencias.add(atraccione);
             } else {
-                otrasAtracciones.add(atracciones.get(i));
+                otrasAtracciones.add(atraccione);
             }
         }
 
@@ -90,7 +89,7 @@ public class GestorDeSugerencias {
         return sugerencias;
     }
 
-    public void generarSugerenciasParaUsuarios() throws IOException, SQLException {
+    public void generarSugerenciasParaUsuarios() throws SQLException {
         for (Usuario usuario : this.usuarios) {
             usuario.analizarSugerencias(this.generarSugerenciasPara(usuario));
             usuario.actualizarItinerario();

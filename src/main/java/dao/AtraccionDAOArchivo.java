@@ -6,17 +6,15 @@ import model.Atraccion;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AtraccionDAOArchivo implements AtraccionDAO {
 
-    public List<Atraccion> obtenerTodos() {
+    public List<Atraccion> obtenerTodos(String url) {
 
         FileReader fr = null;
-        BufferedReader br = null;
+        BufferedReader br ;
         List<Atraccion> atracciones = new ArrayList<>();
 
         try {
@@ -25,17 +23,9 @@ public class AtraccionDAOArchivo implements AtraccionDAO {
 
             String linea = br.readLine();
             while ((linea != null)) {
-                String[] datos = linea.split(";");
-                int id = Integer.parseInt(datos[0]);
-                String nombre = datos[1];
-                int costo = Integer.parseInt(datos[2]);
-                double tiempo = Double.parseDouble(datos[3]);
-                int cupoDiario = Integer.parseInt(datos[4]);
-                String tipo = datos[5];
-
-                Atraccion atraccion = new Atraccion(id, nombre, costo, tiempo, cupoDiario, tipo);
-
+                Atraccion atraccion = toAtraccion(linea);
                 atracciones.add(atraccion);
+
                 linea = br.readLine();
             }
 
@@ -49,8 +39,22 @@ public class AtraccionDAOArchivo implements AtraccionDAO {
             } catch (Exception e2) {
                 e2.printStackTrace();
             }
-            return atracciones;
         }
+        return atracciones;
+    }
+
+    @Override
+    public Atraccion toAtraccion(Object objeto) {
+        String linea = (String) objeto;
+        String[] datos = linea.split(";");
+        int id = Integer.parseInt(datos[0]);
+        String nombre = datos[1];
+        int costo = Integer.parseInt(datos[2]);
+        double tiempo = Double.parseDouble(datos[3]);
+        int cupoDiario = Integer.parseInt(datos[4]);
+        String tipo = datos[5];
+
+        return new Atraccion(id, nombre, costo, tiempo, cupoDiario, tipo);
     }
 
     @Override
@@ -59,17 +63,12 @@ public class AtraccionDAOArchivo implements AtraccionDAO {
     }
 
     @Override
-    public Atraccion toAtraccion(ResultSet resultados) throws SQLException {
+    public Atraccion obtenerPorId(int id) {
         return null;
     }
 
     @Override
-    public Atraccion findById(int id) {
-        return null;
-    }
-
-    @Override
-    public Atraccion findByName(String nombre) {
+    public Atraccion obtenerPorNombre(String nombre) {
         return null;
     }
 

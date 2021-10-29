@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -8,13 +7,13 @@ import model.Atraccion;
 
 public interface AtraccionDAO {
 
-    public abstract Atraccion findByName(String nombre);
+    public abstract Atraccion obtenerPorNombre(String nombre);
 
-    public abstract List<Atraccion> obtenerTodos();
+    public abstract List<Atraccion> obtenerTodos(String url);
 
     public int actualizar(Atraccion atraccion);
 
-    public Atraccion toAtraccion(ResultSet resultados) throws SQLException;
+    public Atraccion toAtraccion(Object objeto) throws SQLException;
 
-    public Atraccion findById(int id);
+    public Atraccion obtenerPorId(int id);
 }
