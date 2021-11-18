@@ -44,47 +44,61 @@ public class PromocionDAOImpl implements PromocionDAO {
     public Promocion toPromocion(Object objeto) {
         ResultSet resultados = (ResultSet) objeto;
         Promocion promocion = null;
-        int idPromo = 0;
+        int idPromo;
 
         try {
             idPromo = resultados.getInt(1);
-        String nombre = resultados.getString(2);
-        int idTipoAtraccion = resultados.getInt(3);
-        int idTipoPromo = resultados.getInt(4);
-        String descuento = resultados.getString(5);
+            String nombre = resultados.getString(2);
+            int idTipoAtraccion = resultados.getInt(3);
+            int idTipoPromo = resultados.getInt(4);
+            String descuento = resultados.getString(5);
+            String descripcion = resultados.getString(6);
+            String imagen = resultados.getString(7);
 
 
-        AtraccionDAO atraccionDAO = DAOFactory.getAtraccionDAO();
-        TipoAtraccion tipo_atraccion = TipoAtraccion.valueOf(((AtraccionDAOImpl) atraccionDAO).obtenerTipoNombre(idTipoAtraccion));
+            AtraccionDAO atraccionDAO = DAOFactory.getAtraccionDAO();
+            TipoAtraccion tipo_atraccion = TipoAtraccion.valueOf(((AtraccionDAOImpl) atraccionDAO).obtenerTipoNombre(idTipoAtraccion));
 
-        String tipo_promocion = obtenerTipoNombre(idTipoPromo);
+            String tipo_promocion = obtenerTipoNombre(idTipoPromo);
 
-        List<Atraccion> atracciones = this.obtenerAtraccionesDePromocion(idPromo);
+            List<Atraccion> atracciones = this.obtenerAtraccionesDePromocion(idPromo);
 
-        if (tipo_promocion.equals("AXB")) {
-            Atraccion atraccionGratis = atraccionDAO.obtenerPorNombre(descuento);
+            switch (tipo_promocion) {
+                case "AXB":
+                    Atraccion atraccionGratis = atraccionDAO.obtenerPorNombre(descuento);
 
-            promocion = new PromoAxB(idPromo, nombre, tipo_atraccion, atracciones, atraccionGratis);
+                    promocion = new PromoAxB(idPromo, nombre, tipo_atraccion, atracciones, atraccionGratis);
+                    promocion.setDescripcion(descripcion);
+                    promocion.setImagen(imagen);
 
-        } else if (tipo_promocion.equals("ABSOLUTA")) {
+                    break;
+                case "ABSOLUTA":
 
-            promocion =  new PromoAbsoluta(idPromo, nombre, tipo_atraccion, atracciones, Integer.parseInt(descuento));
+                    promocion = new PromoAbsoluta(idPromo, nombre, tipo_atraccion, atracciones, Integer.parseInt(descuento));
+                    promocion.setDescripcion(descripcion);
+                    promocion.setImagen(imagen);
 
-        } else if (tipo_promocion.equals("PORCENTUAL")) {
+                    break;
+                case "PORCENTUAL":
 
-            promocion = new PromoPorcentual(idPromo, nombre, tipo_atraccion, atracciones, Integer.parseInt(descuento));
+                    promocion = new PromoPorcentual(idPromo, nombre, tipo_atraccion, atracciones, Integer.parseInt(descuento));
+                    promocion.setDescripcion(descripcion);
+                    promocion.setImagen(imagen);
 
-        } else {
-            throw new RuntimeException("Tipo de promoción inexistente.");
-        }
+                    break;
+                default:
+                    throw new RuntimeException("Tipo de promoción inexistente.");
+            }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+
         return promocion;
     }
 
-    private List<Atraccion> obtenerAtraccionesDePromocion(int idPromocion) throws SQLException {
+    public List<Atraccion> obtenerAtraccionesDePromocion(int idPromocion) throws SQLException {
 
         String sql = "SELECT * FROM atraccion_x_promocion WHERE promocion_id = ?";
         Connection conn = ConnectionProvider.getConnection(Config.leerPropiedad("db"));

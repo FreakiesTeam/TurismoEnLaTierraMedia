@@ -8,6 +8,8 @@ public abstract class Promocion implements Producto, Comparable<Promocion> {
 	protected List<Atraccion> atracciones;
 	protected TipoAtraccion tipoAtraccion;
 	protected int id;
+	protected String descripcion;
+	protected String imagen;
 
 	public Promocion(int id, String nombre, TipoAtraccion tipoAtraccion, List<Atraccion> atracciones) {
 		this.id = id;
@@ -103,6 +105,12 @@ public abstract class Promocion implements Producto, Comparable<Promocion> {
 		Promocion other = (Promocion) obj;
 		return id == other.id && Objects.equals(nombre, other.nombre);
 	}
-	
-	
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 }

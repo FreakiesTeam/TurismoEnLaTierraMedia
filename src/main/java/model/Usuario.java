@@ -13,6 +13,8 @@ public class Usuario {
     private double tiempoDisponible;
     private List<Producto> itinerario;
     private List<Atraccion> atraccionesCompradas;
+    private String imagenPerfil;
+
 
     public Usuario(int id, String nombre, String preferencia, int monedas, double tiempo) {
         this.id = id;
@@ -43,6 +45,15 @@ public class Usuario {
     public void setAtraccionesCompradas(List<Atraccion> atraccionesCompradas) {
         this.atraccionesCompradas = atraccionesCompradas;
     }
+
+    public String getImagenPerfil() {
+        return imagenPerfil;
+    }
+
+    public void setImagenPerfil(String imagenPerfil) {
+        this.imagenPerfil = imagenPerfil;
+    }
+
 
     public double getTiempoDisponible() {
         return tiempoDisponible;

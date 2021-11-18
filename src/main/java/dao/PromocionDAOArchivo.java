@@ -78,6 +78,11 @@ public class PromocionDAOArchivo implements PromocionDAO {
     }
 
     @Override
+    public List<Atraccion> obtenerAtraccionesDePromocion(int anInt) {
+        return null;
+    }
+
+    @Override
     public int actualizar(Promocion promocion) {
         return 0;
     }

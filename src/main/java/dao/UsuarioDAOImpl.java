@@ -5,6 +5,7 @@ import java.util.*;
 
 import config.Config;
 import jdbc.ConnectionProvider;
+import model.Atraccion;
 import model.Producto;
 import model.Usuario;
 
@@ -34,12 +35,12 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     public int actualizar(Usuario usuario) {
         try {
-            String sql = "UPDATE usuario SET monedas = ?, tiempo = ? WHERE nombre = ?";
+            String sql = "UPDATE usuario SET monedas = ?, tiempo = ? WHERE id = ?";
             Connection conn = ConnectionProvider.getConnection(Config.leerPropiedad("db"));
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, usuario.getMonedas());
             statement.setDouble(2, usuario.getTiempoDisponible());
-            statement.setString(3, usuario.getNombre());
+            statement.setInt(3, usuario.getId());
             int rows = statement.executeUpdate();
 
             return rows;
@@ -78,9 +79,17 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         int idTipoPreferido = resultados.getInt(3);
         int monedas = resultados.getInt(4);
         Double tiempo = resultados.getDouble(5);
-        String tipoPreferido = ((AtraccionDAOImpl) atraccionDAO).obtenerTipoNombre(idTipoPreferido);
+        String imagenPerfil = resultados.getString(6);
 
-        return new Usuario(id, nombre, tipoPreferido, monedas, tiempo);
+        String tipoPreferido = ((AtraccionDAOImpl) atraccionDAO).obtenerTipoNombre(idTipoPreferido);
+        Usuario usuario = new Usuario(id, nombre, tipoPreferido, monedas, tiempo);
+        usuario.setImagenPerfil(imagenPerfil);
+        ItinerarioDAO itinerarioDAO = DAOFactory.getItinerarioDAO();
+        List<Atraccion> atraccionesCompradas = itinerarioDAO.obtenerAtraccionesCompradas(id);
+
+        usuario.setAtraccionesCompradas(atraccionesCompradas);
+
+        return usuario;
     }
 
     @Override

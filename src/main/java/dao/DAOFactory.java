@@ -21,4 +21,9 @@ public class DAOFactory {
             return new PromocionDAOImpl();
         else return new PromocionDAOArchivo();
     }
+
+    public static ItinerarioDAO getItinerarioDAO() {
+            return new ItinerarioDAOImpl();
+    }
+
 }

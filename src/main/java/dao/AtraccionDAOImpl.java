@@ -98,9 +98,14 @@ public class AtraccionDAOImpl implements AtraccionDAO {
         double tiempo = resultados.getDouble(4);
         int cupo = resultados.getInt(5);
         int idTipoAtraccion = resultados.getInt(6);
+        String descripcion = resultados.getString(7);
+        String imagen = resultados.getString(8);
         String nombreTipoAtraccion = obtenerTipoNombre(idTipoAtraccion).toUpperCase();
+        Atraccion atraccion = new Atraccion(id, nombre, costo, tiempo, cupo, nombreTipoAtraccion);
+        atraccion.setDescripcion(descripcion);
+        atraccion.setImagen(imagen);
 
-        return new Atraccion(id, nombre, costo, tiempo, cupo, nombreTipoAtraccion);
+        return atraccion;
     }
 
     public String obtenerTipoNombre(int idTipo) throws SQLException {
