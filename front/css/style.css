@@ -1,0 +1,26 @@
+:root {
+    --color-primary: #0094DF;
+    --color-typeface: #023C5A;
+    --color-accent: #FF3E7E;
+    --color-background: #FFFFFF;
+    --color-background2: #EFF9FF;
+    --color-accent2: #FFCC00;
+}
+
+body {
+    font-family: 'Berkshire Swash', cursive;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.hero {
+    position: relative;
+    width: 50%;
+    margin-bottom: 0px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.hero-image {
+    position: relative;
+    text-align: right;
+}
