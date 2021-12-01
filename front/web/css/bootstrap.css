@@ -5,6 +5,12 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
+  --color-primary: #2e525e ;
+  --color-typeface: #242e2d;
+  --color-accent: #f0a041;
+  --color-background: #FEFAE0;
+  --color-background2: #FFF;
+  --color-accent2: #e9b859;
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -2579,14 +2585,14 @@ fieldset:disabled a.btn {
 }
 
 .btn-secondary {
-  color: #fff;
-  background-color: #6c757d;
+  color: var(--color-accent2);
+  background-color:var(--color-primary);
   border-color: #6c757d;
 }
 
 .btn-secondary:hover {
-  color: #fff;
-  background-color: #5a6268;
+  color: var(--color-accent);
+  background-color: var(--color-typeface);
   border-color: #545b62;
 }
 
@@ -6526,7 +6532,7 @@ a.close.disabled {
   color: #fff;
   text-decoration: none;
   outline: 0;
-  opacity: 0.9;
+  opacity: 0.2;
 }
 
 .carousel-control-prev {
@@ -8069,10 +8075,6 @@ button.bg-dark:focus {
 
 .w-75 {
   width: 75% !important;
-}
-
-.w-100 {
-  width: 100% !important;
 }
 
 .w-auto {

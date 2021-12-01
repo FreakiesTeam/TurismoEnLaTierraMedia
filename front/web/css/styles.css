@@ -37,9 +37,9 @@ Colors:
 /**************************/
 :root {
     --color-primary: #2e525e ;
-    --color-typeface: #242e2d;
+    --color-typeface: #374442;
     --color-accent: #f0a041;
-    --color-background: #FEFAE0;
+    --color-background: #fbfaee;
     --color-background2: #FFF;
     --color-accent2: #e9b859;
 }
@@ -63,50 +63,40 @@ h4,
 h5,
 h6 {
     font-family: 'Berkshire Swash', cursive;
+	color: var(--color-typeface);
+	font-weight: 700;
 }
 
 h1 {
-	color: var(--color-typeface);
-	font-weight: 700;
 	font-size: 2.5rem;
 	line-height: 3.125rem;
-	letter-spacing: -0.5px;
+	letter-spacing: 0.5px;
 }
 
 h2 {
-	color: var(--color-typeface);
-	font-weight: 700;
 	font-size: 2.125rem;
 	line-height: 2.625rem;
 	letter-spacing: -0.4px;
 }
 
 h3 {
-	color: var(--color-typeface);
-	font-weight: 700;
 	font-size: 1.75rem;
 	line-height: 2.25rem;
 	letter-spacing: -0.3px;
 }
 
 h4 {
-	color: var(--color-typeface);
-	font-weight: 700;
 	font-size: 1.5rem;
 	line-height: 2rem;
 	letter-spacing: -0.2px;
 }
 
 h5 {
-	color: var(--color-typeface);
-	font-weight: 700;
 	font-size: 1.25rem;
 	line-height: 1.625rem;
 }
 
 h6 {
-	color: var(--color-typeface);
-	font-weight: 700;
 	font-size: 1rem;
 	line-height: 1.375rem;
 }
@@ -148,7 +138,8 @@ h6 {
 }
 
 .slide img{
-	height: 60ch;
+	height: 40ch;
+	width: 100%;
 }
 
 .carousel-inner h1{
@@ -193,7 +184,6 @@ h6 {
 
 a {
 	color: #6b747b;
-	text-decoration: underline;
 }
 
 a:hover {
@@ -214,7 +204,7 @@ a:hover {
 }
 
 .bg-gray {
-	background-color: #f1f9fc;
+	background-color: var(--color-background);
 }
 
 .btn-solid-reg {
@@ -1182,8 +1172,14 @@ input[type='checkbox'] {
 .footer {
 	padding-top: 6rem;
 	padding-bottom: 3rem;
-	background: linear-gradient(rgba(255, 255, 255, 1), rgba(197, 234, 249, 1));
+	background:var(--color-typeface);
 	text-align: center;
+
+}	
+#footerimg{
+	text-align: center;
+	max-width: 100%;
+	max-height: 100%;
 }
 
 .footer a {
@@ -1192,6 +1188,7 @@ input[type='checkbox'] {
 
 .footer h4 {
 	margin-bottom: 1.875rem;
+	color: var(--color-accent2);
 }
 
 .footer .fa-stack {
@@ -1202,21 +1199,21 @@ input[type='checkbox'] {
 }
 
 .footer .fa-stack .fa-stack-1x {
-    color: #252c38;
+    color:var(--color-typeface);
 	transition: all 0.2s ease;
 }
 
 .footer .fa-stack .fa-stack-2x {
-	color: #ffffff;
+	color:var(--color-background);
 	transition: all 0.2s ease;
 }
 
 .footer .fa-stack:hover .fa-stack-1x {
-	color: #ffffff;
+	color: rgb;
 }
 
 .footer .fa-stack:hover .fa-stack-2x {
-    color: #252c38;
+    color:var(--color-accent2);
 }
 
 
@@ -1225,12 +1222,13 @@ input[type='checkbox'] {
 /*********************/
 .copyright {
 	padding-top: 1.5rem;
-	background-color: #c5eaf9;
+	background-color:var(--color-typeface);
 	text-align: center;
 }
 
 .copyright a {
 	text-decoration: none;
+	color: var(--color-background);
 }
 
 
@@ -1422,9 +1420,11 @@ a:hover.back-to-top {
 	/* end of header */
 
 
-	/* Introduction */
+	/* Frase */
 	.basic-1 p {
-		width: 930px;
+		width: 730px;
+		font-weight: 400;
+		font-family: 'Open Sans';
 		margin-right: auto;
 		margin-left: auto;
 	}
