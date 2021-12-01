@@ -55,26 +55,27 @@
                         <a class="nav-link page-scroll" href="#header">Inicio <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#features">Productos</a>
+                        <a class="nav-link page-scroll" href="#carouselExampleCaptions">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#details">Atracciones</a>
+                        <a class="nav-link page-scroll" href="#carouselAtracciones">Atracciones</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="#pricing">Promociones</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Drop</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Institucionalidad</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item page-scroll" href="article.html">Article Details</a>
+                            <a class="dropdown-item page-scroll" href="article.html">Quiénes Somos</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item page-scroll" href="terms.html">Terms Conditions</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item page-scroll" href="privacy.html">Privacy Policy</a>
+                            <a class="dropdown-item page-scroll" href="terms.html">Qué Somos</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#download">Download</a>
+                        <a class="nav-link page-scroll" href="#pricing">Wiki</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/web/login.html">Login</a>
                     </li>
                 </ul>
                 <span class="nav-item social-icons">
@@ -124,7 +125,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Tierra Media es el único parque temático en el mundo basado en la literatura de J.R.R. Tolkien, alguna vez deseaste caminar por el Reino de Gondor y mirar el Árbol Blanco? o cabalgar con los Rohirrim de Rohan? pues vení chango</p>
+                    <p>"La fantasía es, como muchas otras cosas, un derecho legítimo de todo ser humano, pues a través de ella se halla una completa libertad y satisfacción"</p>
+                    <p style="text-align: end;">J.R.R Tolkien</p>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
@@ -132,112 +134,101 @@
     <!-- end of introduction -->
 
 
-    <!-- Features -->
-    <div id="features" class="cards-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-image">
-                            <img class="img-fluid" src="images/features-icon-1.svg" alt="alternative">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Platform Integration</h5>
-                            <p>You sales force can use the app on any smartphone platform without compatibility issues</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
+    <!--Carousel-->
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/web/images/gandalf-minas-tirith.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h1>Minas Tirith</h1>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/web/images/reyes-gondor.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h1>Reyes de Gondor</h1>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/web/images/rivendel.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h1>Rivendel</h1>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      
+    <div>
+        <p>INFO</p>
+    </div>
 
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-image">
-                            <img class="img-fluid" src="images/features-icon-2.svg" alt="alternative">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Easy On Resources</h5>
-                            <p>Works smoothly even on older generation hardware due to our optimization efforts</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-image">
-                            <img class="img-fluid" src="images/features-icon-3.svg" alt="alternative">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Great Performance</h5>
-                            <p>Optimized code and innovative technology insure no delays and ultra-fast responsiveness</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-image">
-                            <img class="img-fluid" src="images/features-icon-4.svg" alt="alternative">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Multiple Languages</h5>
-                            <p>Choose from one of the 40 languages that come pre-installed and start selling smarter</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-image">
-                            <img class="img-fluid" src="images/features-icon-5.svg" alt="alternative">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Free Updates</h5>
-                            <p>Don't worry about future costs, pay once and receive all future updates at no extra cost</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-image">
-                            <img class="img-fluid" src="images/features-icon-6.svg" alt="alternative">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Community Support</h5>
-                            <p>Register the app and get acces to knowledge and ideas from the Pavo online community</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of cards-1 -->
-    <!-- end of features -->
-
-
-    <!-- Details 1 -->
-    <div id="details" class="basic-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5">
-                    <div class="text-container">
-                        <h2>Results driven ground breaking technology</h2>
-                        <p>Based on our team's extensive experience in developing line of business applications and constructive customer feedback we reached a new level of revenue.</p>
-                        <p>We enjoy helping small and medium sized tech businesses take a shot at established Fortune 500 companies</p>
-                    </div> <!-- end of text-container -->
-                </div> <!-- end of col -->
-                <div class="col-lg-7">
-                    <div class="image-container">
-                        <img class="img-fluid" src="images/details-1.jpg" alt="alternative">
-                    </div> <!-- end of image-container -->
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of basic-2 -->
+    <!-- Carousel Atracciones -->
+    <div id="carouselAtracciones" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/web/images/rohan.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="/web/images/ganldaf-vs-balrog.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="/web/images/reyes-gondor.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+        
+      </div>
     <!-- end of details 1 -->
+    <div class="text-center pt-2">
+        <button type="button" class="btn btn-secondary btn-lg">Ver Más</button>
+    </div>
 
+    <div class="container marketing">
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+          <div class="col-lg-4">
+            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+    
+            <h2>Heading</h2>
+            <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+    
+            <h2>Heading</h2>
+            <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
+            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+    
+            <h2>Heading</h2>
+            <p>And lastly this, the third column of representative placeholder content.</p>
+            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
 
     <!-- Details 2 -->
     <div class="basic-3">
@@ -674,6 +665,7 @@
     
     	
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
     <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
     <script src="js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->

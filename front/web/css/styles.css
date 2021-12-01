@@ -39,7 +39,7 @@ Colors:
     --color-primary: #2e525e ;
     --color-typeface: #242e2d;
     --color-accent: #f0a041;
-    --color-background: #c9c2bc;
+    --color-background: #FEFAE0;
     --color-background2: #FFF;
     --color-accent2: #e9b859;
 }
@@ -52,7 +52,7 @@ html {
 
 body, p {
 	color: var(--color-typeface);
-	background-color: #FEFAE0 ;
+	background-color:var(--color-background);
 	font: 400 1rem/1.625rem "Open Sans", sans-serif;
 }
 
@@ -141,6 +141,25 @@ h6 {
     left: 50%;
     transform: translate(-50%, -50%);
 	letter-spacing: 1pt;
+}
+
+.slide {
+	margin-top: 10px;
+}
+
+.slide img{
+	height: 60ch;
+}
+
+.carousel-inner h1{
+	color: var(--color-accent2);
+	text-align: center;
+}
+
+.basic-1 p{
+	color: var(--color-typeface);
+	font-family: 'Berkshire Swash', cursive;
+	font-size: 26px; 
 }
 
 .h1-large {
@@ -493,7 +512,7 @@ input[type='checkbox'] {
 /*     Navigation     */
 /**********************/
 .navbar {
-	background-color: #f1f9fc;
+	background-color:var(--color-background);
 	font-weight: 600;
 	font-size: 0.875rem;
 	line-height: 0.875rem;
@@ -527,7 +546,7 @@ input[type='checkbox'] {
 	padding-left: 1rem;
 	overflow-y: auto;
 	visibility: hidden;
-	background-color: #f1f9fc;
+	background-color: var(--color-background);
 	transition: visibility .3s ease-in-out, -webkit-transform .3s ease-in-out;
 	transition: transform .3s ease-in-out, visibility .3s ease-in-out;
 	transition: transform .3s ease-in-out, visibility .3s ease-in-out, -webkit-transform .3s ease-in-out;
@@ -673,13 +692,6 @@ input[type='checkbox'] {
 	text-align: center;
 }
 
-.basic-1 p {
-	color: #252c38;
-	font-size: 1.875rem;
-	line-height: 2.625rem;
-}
-
-
 /********************/
 /*     Features     */
 /********************/
@@ -694,7 +706,7 @@ input[type='checkbox'] {
 	padding: 3.125rem 1rem 2.125rem 1rem;
 	border: none;
 	border-radius: 16px;
-	background-color: #f1f9fc;
+	background-color: var(--color-background);
 }
 
 .cards-1 .card-image {
@@ -1349,7 +1361,7 @@ a:hover.back-to-top {
 	.navbar.top-nav-collapse {
 		padding-top: 0.5rem;
 		padding-bottom: 0.5rem;
-		background-color: #f1f9fc;
+		background-color: var(--color-background);
 	}
 
 	.offcanvas-collapse {
