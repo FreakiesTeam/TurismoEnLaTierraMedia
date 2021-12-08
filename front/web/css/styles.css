@@ -42,6 +42,8 @@ Colors:
     --color-background: #fbfaee;
     --color-background2: #FFF;
     --color-accent2: #e9b859;
+	--color-buttom: #3d6a79;
+	--color-nav: #f5f3db;
 }
 
 body,
@@ -133,12 +135,30 @@ h6 {
 	letter-spacing: 1pt;
 }
 
+.boton{
+	padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    border-radius: 0.3rem;
+	color: var(--color-accent2);
+    background-color: var(--color-buttom);
+    border-color: var(--color-buttom);
+	border: 1px hidden;
+	text-decoration: none;
+}
+
+.boton:hover{
+	color: var(--color-accent2);
+    background-color: var(--color-primary);
+	border-color:var(--color-buttom);
+	text-decoration: none;
+}
+
 .slide {
 	margin-top: 10px;
 }
 
 .slide img{
-	height: 40ch;
+	height: 47ch;
 	width: 100%;
 }
 
@@ -917,7 +937,7 @@ input[type='checkbox'] {
 }
 
 .counter #counter .counter-value {
-	color: #252c38;
+	color: var(--color-typeface);
 	font-weight: 700;
 	font-size: 3.25rem;
 	line-height: 3.75rem;
@@ -1244,13 +1264,13 @@ a.back-to-top {
 	width: 42px;
 	height: 42px;
 	border-radius: 30px;
-	background: #343e48 url("../images/up-arrow.png") no-repeat center 47%;
+	background: var(--color-primary) url("../images/up-arrow.png") no-repeat center 47%;
 	background-size: 18px 18px;
 	text-indent: -9999px;
 }
 
 a:hover.back-to-top {
-	background-color: #000000;
+	background-color: var(--color-buttom);
 }
 
 
@@ -1372,6 +1392,7 @@ a:hover.back-to-top {
 		background-color: transparent;
 		overflow-y: visible;
 		visibility: visible;
+		flex-grow: 0;
 	}
 
 	.offcanvas-collapse.open {
