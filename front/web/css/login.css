@@ -14,7 +14,7 @@
 			padding: 0;
 			background-color: var(--color-background);
             /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-    background-image: linear-gradient(rgba(128, 121, 196, 0.25), rgba(99, 131, 106, 0.25)), url(/web/images/hero.jpg);
+    background-image: linear-gradient(rgba(128, 121, 196, 0.25), rgba(99, 131, 106, 0.25)), url(/images/hero.jpg);
     /* Set a specific height */
     /* Position and center the image to scale nicely on all screens */
     background-position: center;

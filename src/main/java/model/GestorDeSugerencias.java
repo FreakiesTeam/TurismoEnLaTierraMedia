@@ -10,6 +10,7 @@ public class GestorDeSugerencias {
     private List<Usuario> usuarios;
     private List<Atraccion> atracciones;
     private List<Promocion> promociones;
+    private List<Tipo> tiposAtraccion;
 
     public static GestorDeSugerencias getInstancia() {
         if (instancia == null) {
@@ -22,6 +23,7 @@ public class GestorDeSugerencias {
         this.usuarios = new ArrayList<>();
         this.atracciones = new ArrayList<>();
         this.promociones = new ArrayList<>();
+        this.tiposAtraccion = new ArrayList<>();
     }
 
     public void cargarUsuarios(String url) {
@@ -35,6 +37,11 @@ public class GestorDeSugerencias {
     public void cargarAtracciones(String  url) {
         this.atracciones = DAOFactory.getAtraccionDAO().obtenerTodos(url);
     }
+    
+    public void cargarTipos(String  url) {
+        this.tiposAtraccion = DAOFactory.getTipoDAO().obtenerTodos(url);
+    }
+
 
     public List<Atraccion> getAtracciones() {
         return this.atracciones;

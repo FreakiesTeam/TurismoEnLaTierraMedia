@@ -4,7 +4,6 @@ import config.Config;
 import jdbc.ConnectionProvider;
 import model.Atraccion;
 import model.Producto;
-import model.Promocion;
 import model.Usuario;
 
 import java.sql.Connection;

@@ -14,6 +14,7 @@ public class Usuario {
     private List<Producto> itinerario;
     private List<Atraccion> atraccionesCompradas;
     private String imagenPerfil;
+    private String hashContrasenia;
 
 
     public Usuario(int id, String nombre, String preferencia, int monedas, double tiempo) {
@@ -59,7 +60,16 @@ public class Usuario {
         return tiempoDisponible;
     }
 
-    public void analizarSugerencias(List<Producto> sugerencias) throws SQLException {
+    
+    public String getHashContrasenia() {
+		return hashContrasenia;
+	}
+
+	public void setHashContrasenia(String hashContrasenia) {
+		this.hashContrasenia = hashContrasenia;
+	}
+
+	public void analizarSugerencias(List<Producto> sugerencias) throws SQLException {
         Scanner in = new Scanner(System.in);
         String respuesta;
 
